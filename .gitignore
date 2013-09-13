@@ -1,8 +1,7 @@
 ##folder##
 
-/out/
-/teamlogServer/target/
-/.idea/
+/build/
+/target/
 ##files##
 .DS_Store
 *.class
