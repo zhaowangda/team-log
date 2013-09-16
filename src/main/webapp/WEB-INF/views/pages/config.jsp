@@ -14,8 +14,15 @@
                 <input type="text" id="siteUrl" class="span7" name="siteUrl" value="${actionBean.siteUrl}">
                 <p class="help-block"><fmt:message key="config.site.url.help"/></p>
                 <s:errors field="siteUrl"/>
+                <c:forEach var="ip" items="${actionBean.urls}" varStatus="s">
+                    <label class="radio">
+                        <input type="radio" name="ips" value="${ip}" ${s.count==1?"checked":""}>
+                            ${ip}
+                    </label>
+                </c:forEach>
             </div>
         </div>
+
 
         <div class="control-group">
             <label class="control-label" for="userName"><fmt:message key="config.email.username"/></label>
@@ -69,5 +76,10 @@
         <%--<%@include file="/WEB-INF/views/include/email-failed-reasons.jsp"%>--%>
     </s:layout-component>
 </s:layout-render>
-<script type="text/javascript">$('#siteUrl').focus()</script>
+<script type="text/javascript">
+    $('#siteUrl').focus()
+    $('input:radio').change(function(){
+        $('#siteUrl').val($(this).val());
+    });
+</script>
 

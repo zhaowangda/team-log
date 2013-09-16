@@ -12,6 +12,10 @@ public class WebUtils {
 //        return (Boolean) servletContext.getAttribute(TeamlogContextListener.FIRST_USER_CREATE_KEY);
 //    }
 
-    public static final String SITE_URL= TeamlogLocalizationUtils.getSystemParams("site.url");
+    public static String SITE_URL= TeamlogLocalizationUtils.getSystemParams("site.url");
     public static final String ACTIVATE_URL=SITE_URL+"activate-user/";
+
+    public static void updateSiteUrl(String url) {
+        SITE_URL = url;
+    }
 }

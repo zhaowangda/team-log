@@ -3,7 +3,9 @@ package com.wiseach.teamlog.web.actions;
 import com.wiseach.teamlog.Constants;
 import com.wiseach.teamlog.utils.DateUtils;
 import com.wiseach.teamlog.utils.EmailSender;
+import com.wiseach.teamlog.utils.NetUtils;
 import com.wiseach.teamlog.utils.TeamlogLocalizationUtils;
+import com.wiseach.teamlog.web.WebUtils;
 import com.wiseach.teamlog.web.security.UserAuthProcessor;
 import net.sourceforge.stripes.action.*;
 import net.sourceforge.stripes.validation.LocalizableError;
@@ -17,6 +19,7 @@ import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.net.*;
 import java.util.Date;
+import java.util.List;
 import java.util.Properties;
 
 /**
@@ -50,19 +53,19 @@ public class ConfigActionBean extends BaseActionBean {
 
     private void updateSiteUrl() {
         if (siteUrl==null || siteUrl.equals(Constants.EMPTY_STRING)) {
-            HttpServletRequest request = getContext().getRequest();
-            String hostAddress="localhost";
-            try {
-                hostAddress = InetAddress.getLocalHost().getHostAddress();
-            } catch (UnknownHostException e) {
-                e.printStackTrace();
-            }
-            int localPort = request.getLocalPort();
-            siteUrl="http://"+ hostAddress +(localPort ==80?Constants.EMPTY_STRING:(":"+ localPort))+"/";
+            urls = NetUtils.getAllHostUrl(getContext().getRequest().getLocalPort());
+            if (urls.size()>0) siteUrl = urls.get(0);
         }
     }
 
     public Resolution save() {
+        ssl = ssl==null?"false":"true";
+        tls = tls==null?"false":"true";
+        EmailSender.updateParameters(smtpUsername,smtpPassword,smtpHost,smtpPort,ssl,tls);
+        if (!EmailSender.test(smtpUsername,getMessage("config.email.test.name"),getMessage("config.email.test.subject"),getMessage("config.email.test.content"))) {
+            setRequestAttribute(ERROR_DESCRIPTION_KEY,"config.error.save.description.email");
+            return ViewHelper.getStandardErrorBoxResolution();
+        }
         Properties properties = new Properties();
         try {
             String paramsFile = getContext().getServletContext().getRealPath("/")+"WEB-INF"+ File.separator+"classes"
@@ -70,27 +73,20 @@ public class ConfigActionBean extends BaseActionBean {
             FileInputStream fileInputStream = new FileInputStream(paramsFile);
             properties.load(fileInputStream);
             fileInputStream.close();
-            updateSiteUrl();
             properties.setProperty("site.url", siteUrl);
             properties.setProperty("email.account", smtpUsername);
             properties.setProperty("email.password", smtpPassword);
             properties.setProperty("email.smtp.host", smtpHost);
             properties.setProperty("email.smtp.port", smtpPort);
-            ssl = ssl==null?"false":"true";
             properties.setProperty("email.ssl.enabled", ssl);
-            tls = tls==null?"false":"true";
             properties.setProperty("email.tls.enabled",tls);
             FileOutputStream fileOutputStream = new FileOutputStream(paramsFile);
             properties.store(fileOutputStream,"update at "+ DateUtils.formatDate(new Date()));
             fileOutputStream.close();
             TeamlogLocalizationUtils.refreshParamBundle();
             //refresh current configuration.
-            EmailSender.EMAIL_ACCOUNT = smtpUsername;
-            EmailSender.EMAIL_PASSWORD = smtpPassword;
-            EmailSender.HOST_NAME=smtpHost;
-            EmailSender.SMTP_PORT = Integer.valueOf(smtpPort);
-            EmailSender.EMAIL_SSL_ENABLED = ssl;
-            EmailSender.EMAIL_TLS_ENABLED= tls;
+            EmailSender.updateParameters(smtpUsername,smtpPassword,smtpHost,smtpPort,ssl,tls);
+            WebUtils.updateSiteUrl(siteUrl);
         } catch (Exception e) {
             setRequestAttribute(ERROR_DESCRIPTION_KEY,"config.error.save.description");
             return ViewHelper.getStandardErrorBoxResolution();
@@ -105,6 +101,7 @@ public class ConfigActionBean extends BaseActionBean {
     @Validate(required = true)
     public String siteUrl, smtpUsername, smtpPassword,smtpHost,smtpPort;
     public String ssl,tls;
+    public List<String> urls;
 
     @ValidationMethod
     public void checkData(ValidationErrors errors) {
@@ -175,4 +172,9 @@ public class ConfigActionBean extends BaseActionBean {
     public void setTls(String tls) {
         this.tls = tls;
     }
+
+    public List<String> getUrls() {
+        return urls;
+    }
+
 }

@@ -23,29 +23,47 @@ public class EmailSender {
         new Thread(new Runnable() {
             @Override
             public void run() {
-                HtmlEmail htmlEmail = new HtmlEmail();
-                htmlEmail.setHostName(HOST_NAME);
-                htmlEmail.setSmtpPort(SMTP_PORT);
-                htmlEmail.setAuthentication(EMAIL_ACCOUNT,EMAIL_PASSWORD);
-                if (Boolean.valueOf(EMAIL_SSL_ENABLED)) htmlEmail.setSSL(true);
-                if (Boolean.valueOf(EMAIL_TLS_ENABLED)) htmlEmail.setTLS(true);
-                htmlEmail.setCharset(Constants.ENCODING_UTF8);
-
-                try {
-                    htmlEmail.setFrom(TEAMLOG_APP_WISEACH_COM);
-                    htmlEmail.addTo(to,toName, Constants.ENCODING_UTF8);
-                    htmlEmail.setSubject(subject);
-                    htmlEmail.setHtmlMsg(content);
-                    htmlEmail.send();
-                    htmlEmail=null;
-                } catch (EmailException e) {
-                    Log.getInstance(EmailSender.class).error(e);
-                    e.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.
-                }
+                doEmailSend(to, toName, subject, content);
 
             }
         }).run();
         return true;
     }
 
+    public static boolean test(String to, String name,String subject,String content) {
+        return doEmailSend(to,name,subject,content);
+    }
+
+    public static void updateParameters(String userName,String password,String host,String port,String ssl,String tls) {
+        EmailSender.EMAIL_ACCOUNT = userName;
+        EmailSender.EMAIL_PASSWORD = password;
+        EmailSender.HOST_NAME=host;
+        EmailSender.SMTP_PORT = Integer.valueOf(port);
+        EmailSender.EMAIL_SSL_ENABLED = ssl;
+        EmailSender.EMAIL_TLS_ENABLED= tls;
+
+    }
+
+    private static boolean doEmailSend(String to, String toName, String subject, String content) {
+        HtmlEmail htmlEmail = new HtmlEmail();
+        htmlEmail.setHostName(HOST_NAME);
+        htmlEmail.setSmtpPort(SMTP_PORT);
+        htmlEmail.setAuthentication(EMAIL_ACCOUNT,EMAIL_PASSWORD);
+        if (Boolean.valueOf(EMAIL_SSL_ENABLED)) htmlEmail.setSSL(true);
+        if (Boolean.valueOf(EMAIL_TLS_ENABLED)) htmlEmail.setTLS(true);
+        htmlEmail.setCharset(Constants.ENCODING_UTF8);
+
+        try {
+            htmlEmail.setFrom(TEAMLOG_APP_WISEACH_COM);
+            htmlEmail.addTo(to, toName, Constants.ENCODING_UTF8);
+            htmlEmail.setSubject(subject);
+            htmlEmail.setHtmlMsg(content);
+            htmlEmail.send();
+            return true;
+        } catch (EmailException e) {
+            Log.getInstance(EmailSender.class).error(e);
+            e.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.
+            return false;
+        }
+    }
 }
