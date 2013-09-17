@@ -14,12 +14,15 @@
                 <input type="text" id="siteUrl" class="span7" name="siteUrl" value="${actionBean.siteUrl}">
                 <p class="help-block"><fmt:message key="config.site.url.help"/></p>
                 <s:errors field="siteUrl"/>
-                <c:forEach var="ip" items="${actionBean.urls}" varStatus="s">
-                    <label class="radio">
-                        <input type="radio" name="ips" value="${ip}" ${s.count==1?"checked":""}>
-                            ${ip}
-                    </label>
-                </c:forEach>
+                <c:if test="${not empty actionBean.urls}">
+                    <p class="help-block"><fmt:message key="config.site.url.help.chosen"/></p>
+                    <c:forEach var="url" items="${actionBean.urls}" >
+                        <label class="radio">
+                            <input type="radio" name="ipUrl" value="${url}" ${url eq actionBean.siteUrl?"checked":""}>
+                                ${url}
+                        </label>
+                    </c:forEach>
+                </c:if>
             </div>
         </div>
 

@@ -55,6 +55,11 @@ public class ConfigActionBean extends BaseActionBean {
         if (siteUrl==null || siteUrl.equals(Constants.EMPTY_STRING)) {
             urls = NetUtils.getAllHostUrl(getContext().getRequest().getLocalPort());
             if (urls.size()>0) siteUrl = urls.get(0);
+            for (String url : urls) {
+                if (url.contains("//192.") || url.contains("//10.")||url.contains("//172.")) {
+                    siteUrl = url;
+                }
+            }
         }
     }
 

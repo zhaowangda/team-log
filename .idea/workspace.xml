@@ -3,20 +3,18 @@
   <component name="ChangeListManager">
     <list default="true" id="172e76aa-c473-4ad3-9327-cf398e719fad" name="Default" comment="">
       <change type="DELETED" beforePath="$PROJECT_DIR$/src/main/resources/teamstar.properties" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gitignore" afterPath="$PROJECT_DIR$/.gitignore" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/wiseach/teamlog/web/actions/ConfigActionBean.java" afterPath="$PROJECT_DIR$/src/main/java/com/wiseach/teamlog/web/actions/ConfigActionBean.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/wiseach/teamlog/utils/EmailSender.java" afterPath="$PROJECT_DIR$/src/main/java/com/wiseach/teamlog/utils/EmailSender.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/wiseach/teamlog/web/WebUtils.java" afterPath="$PROJECT_DIR$/src/main/java/com/wiseach/teamlog/web/WebUtils.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/pages/config.jsp" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/pages/config.jsp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/misc.xml" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/i18n/ui.properties" afterPath="$PROJECT_DIR$/src/main/resources/i18n/ui.properties" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/vcs.xml" afterPath="$PROJECT_DIR$/.idea/vcs.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="teamlog.iws" />
     <ignored path=".idea/workspace.xml" />
     <file path="/Dummy.txt" changelist="172e76aa-c473-4ad3-9327-cf398e719fad" time="1379347069779" ignored="false" />
     <file path="/.gitignore" changelist="172e76aa-c473-4ad3-9327-cf398e719fad" time="1379347082529" ignored="false" />
+    <file path="/config.jsp" changelist="172e76aa-c473-4ad3-9327-cf398e719fad" time="1379379343958" ignored="false" />
+    <file path="/ui.properties" changelist="172e76aa-c473-4ad3-9327-cf398e719fad" time="1379378753221" ignored="false" />
+    <file path="/ConfigActionBean.java" changelist="172e76aa-c473-4ad3-9327-cf398e719fad" time="1379379242378" ignored="false" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -86,19 +84,28 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ConfigActionBean.java" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="ConfigActionBean.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/wiseach/teamlog/web/actions/ConfigActionBean.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="68" column="0" selection-start="2638" selection-end="2638" vertical-scroll-proportion="0.64806867">
+            <state line="62" column="9" selection-start="2297" selection-end="2297" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="config.jsp" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="ui.properties" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/resources/i18n/ui.properties">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="92" column="59" selection-start="3847" selection-end="3847" vertical-scroll-proportion="-6.72">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="config.jsp" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/views/pages/config.jsp">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="21" column="28" selection-start="1167" selection-end="1167" vertical-scroll-proportion="24.962963">
+            <state line="15" column="43" selection-start="858" selection-end="858" vertical-scroll-proportion="0.18678816">
               <folding />
             </state>
           </provider>
@@ -123,7 +130,9 @@
     <option name="changedFiles">
       <list>
         <option value="$PROJECT_DIR$/.gitignore" />
+        <option value="$PROJECT_DIR$/src/main/resources/i18n/ui.properties" />
         <option value="$PROJECT_DIR$/src/main/java/com/wiseach/teamlog/web/actions/ConfigActionBean.java" />
+        <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/pages/config.jsp" />
       </list>
     </option>
   </component>
@@ -199,6 +208,54 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="main" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="teamlog" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="team-log" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="main" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="resources" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="teamlog" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="team-log" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="main" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="resources" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="i18n" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -654,16 +711,23 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/views/pages/config.jsp">
+    <entry file="file://$PROJECT_DIR$/src/main/resources/i18n/ui.properties">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="21" column="28" selection-start="1167" selection-end="1167" vertical-scroll-proportion="24.962963">
+        <state line="92" column="59" selection-start="3847" selection-end="3847" vertical-scroll-proportion="-6.72">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/wiseach/teamlog/web/actions/ConfigActionBean.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="68" column="0" selection-start="2638" selection-end="2638" vertical-scroll-proportion="0.64806867">
+        <state line="62" column="9" selection-start="2297" selection-end="2297" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/views/pages/config.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="15" column="43" selection-start="858" selection-end="858" vertical-scroll-proportion="0.18678816">
           <folding />
         </state>
       </provider>
