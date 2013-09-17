@@ -2,10 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="172e76aa-c473-4ad3-9327-cf398e719fad" name="Default" comment="">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/main/resources/teamstar.properties" afterPath="" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/wiseach/teamlog/web/actions/ConfigActionBean.java" afterPath="$PROJECT_DIR$/src/main/java/com/wiseach/teamlog/web/actions/ConfigActionBean.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/pages/config.jsp" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/pages/config.jsp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/i18n/ui.properties" afterPath="$PROJECT_DIR$/src/main/resources/i18n/ui.properties" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/wiseach/teamlog/utils/EmailSender.java" afterPath="$PROJECT_DIR$/src/main/java/com/wiseach/teamlog/utils/EmailSender.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_apache_commons_commons_email_1_2.xml" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_apache_commons_commons_email_1_2.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="teamlog.iws" />
@@ -14,7 +13,10 @@
     <file path="/.gitignore" changelist="172e76aa-c473-4ad3-9327-cf398e719fad" time="1379347082529" ignored="false" />
     <file path="/config.jsp" changelist="172e76aa-c473-4ad3-9327-cf398e719fad" time="1379379343958" ignored="false" />
     <file path="/ui.properties" changelist="172e76aa-c473-4ad3-9327-cf398e719fad" time="1379378753221" ignored="false" />
-    <file path="/ConfigActionBean.java" changelist="172e76aa-c473-4ad3-9327-cf398e719fad" time="1379379242378" ignored="false" />
+    <file path="/ConfigActionBean.java" changelist="172e76aa-c473-4ad3-9327-cf398e719fad" time="1379380295051" ignored="false" />
+    <file path="$PROJECT_DIR$/../../../site/app/views/main.scala.html" changelist="172e76aa-c473-4ad3-9327-cf398e719fad" time="1379383967328" ignored="false" />
+    <file path="/a.dummy" changelist="172e76aa-c473-4ad3-9327-cf398e719fad" time="1379393910380" ignored="false" />
+    <file path="/EmailSender.java" changelist="172e76aa-c473-4ad3-9327-cf398e719fad" time="1379394829337" ignored="false" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -87,7 +89,43 @@
       <file leaf-file-name="ConfigActionBean.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/wiseach/teamlog/web/actions/ConfigActionBean.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="62" column="9" selection-start="2297" selection-end="2297" vertical-scroll-proportion="0.0">
+            <state line="60" column="26" selection-start="2282" selection-end="2282" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="DBPool.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/wiseach/teamlog/db/DBPool.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="14" column="18" selection-start="392" selection-end="392" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ActivateUserActionBean.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/wiseach/teamlog/web/actions/ActivateUserActionBean.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="17" column="17" selection-start="525" selection-end="525" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="EmailSender.java" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/wiseach/teamlog/utils/EmailSender.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="55" column="45" selection-start="2407" selection-end="2407" vertical-scroll-proportion="0.68715084">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Email.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="jar://$USER_HOME$/.ideaLibSources/commons-email-1.2-sources.jar!/org/apache/commons/mail/Email.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="1263" column="18" selection-start="40702" selection-end="40702" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -102,10 +140,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="config.jsp" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="config.jsp" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/views/pages/config.jsp">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="15" column="43" selection-start="858" selection-end="858" vertical-scroll-proportion="0.18678816">
+            <state line="15" column="43" selection-start="858" selection-end="858" vertical-scroll-proportion="-3.0370371">
               <folding />
             </state>
           </provider>
@@ -131,8 +169,9 @@
       <list>
         <option value="$PROJECT_DIR$/.gitignore" />
         <option value="$PROJECT_DIR$/src/main/resources/i18n/ui.properties" />
-        <option value="$PROJECT_DIR$/src/main/java/com/wiseach/teamlog/web/actions/ConfigActionBean.java" />
         <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/pages/config.jsp" />
+        <option value="$PROJECT_DIR$/src/main/java/com/wiseach/teamlog/web/actions/ConfigActionBean.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/wiseach/teamlog/utils/EmailSender.java" />
       </list>
     </option>
   </component>
@@ -146,7 +185,7 @@
   <component name="ProjectFrameBounds">
     <option name="y" value="22" />
     <option name="width" value="1680" />
-    <option name="height" value="964" />
+    <option name="height" value="963" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
     <OptionsSetting value="true" id="Add" />
@@ -607,26 +646,27 @@
     <option name="totallyTimeSpent" value="199000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="22" width="1680" height="964" extended-state="6" />
+    <frame x="0" y="22" width="1680" height="963" extended-state="6" />
     <editor active="true" />
     <layout>
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.32977462" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="SBT Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.3992891" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3985765" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33056873" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32977462" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Web" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32988507" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.249694" sideWeight="0.6007109" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.249694" sideWeight="0.6702254" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32911393" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Java Enterprise" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -635,7 +675,6 @@
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
     </layout>
   </component>
@@ -718,16 +757,51 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/wiseach/teamlog/web/actions/ConfigActionBean.java">
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/views/pages/config.jsp">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="62" column="9" selection-start="2297" selection-end="2297" vertical-scroll-proportion="0.0">
+        <state line="15" column="43" selection-start="858" selection-end="858" vertical-scroll-proportion="-3.0370371">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/views/pages/config.jsp">
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/wiseach/teamlog/web/actions/ConfigActionBean.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="15" column="43" selection-start="858" selection-end="858" vertical-scroll-proportion="0.18678816">
+        <state line="60" column="26" selection-start="2282" selection-end="2282" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/wiseach/teamlog/db/DBPool.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="14" column="18" selection-start="392" selection-end="392" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/wiseach/teamlog/web/actions/ActivateUserActionBean.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="17" column="17" selection-start="525" selection-end="525" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/org/apache/commons/commons-email/1.2/commons-email-1.2.jar!/org/apache/commons/mail/Email.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="95" column="41" selection-start="5093" selection-end="5093" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$USER_HOME$/.ideaLibSources/commons-email-1.2-sources.jar!/org/apache/commons/mail/Email.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="1263" column="18" selection-start="40702" selection-end="40702" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/wiseach/teamlog/utils/EmailSender.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="55" column="45" selection-start="2407" selection-end="2407" vertical-scroll-proportion="0.68715084">
           <folding />
         </state>
       </provider>

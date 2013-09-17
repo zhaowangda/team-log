@@ -58,6 +58,7 @@ public class ConfigActionBean extends BaseActionBean {
             for (String url : urls) {
                 if (url.contains("//192.") || url.contains("//10.")||url.contains("//172.")) {
                     siteUrl = url;
+                    break;
                 }
             }
         }

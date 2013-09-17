@@ -16,7 +16,6 @@ public class EmailSender {
     public static String EMAIL_PASSWORD = TeamlogLocalizationUtils.getSystemParams("email.password");
     public static String EMAIL_SSL_ENABLED = TeamlogLocalizationUtils.getSystemParams("email.ssl.enabled");
     public static String EMAIL_TLS_ENABLED = TeamlogLocalizationUtils.getSystemParams("email.tls.enabled");
-    public static String TEAMLOG_APP_WISEACH_COM = "teamlogApp@wiseach.com";
 
     public static boolean send(final String to, final String toName, final String subject, final String content){
         if (HOST_NAME==null || HOST_NAME.equals("")) return false;
@@ -54,7 +53,7 @@ public class EmailSender {
         htmlEmail.setCharset(Constants.ENCODING_UTF8);
 
         try {
-            htmlEmail.setFrom(TEAMLOG_APP_WISEACH_COM);
+            htmlEmail.setFrom(EMAIL_ACCOUNT);
             htmlEmail.addTo(to, toName, Constants.ENCODING_UTF8);
             htmlEmail.setSubject(subject);
             htmlEmail.setHtmlMsg(content);
