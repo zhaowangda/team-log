@@ -48,12 +48,23 @@ window.BrowseLogHeaderView = Backbone.View.extend({
         }
     },
 
+    refreshReports:function() {
+        if (this.$el.find('#showReportBtn').hasClass('active')) this.renderReports();
+    },
+
     renderReports:function(){
         var users= _.pluck(window.app.browseLogPeopleView.model.toJSON(),'USERNAME'),comments=new Array(),likes=new Array(),
             efforts=new Array();
         var workLogs = window.app.browseLogPeopleView.browseLogListView.model.toJSON();
 
-        if (!workLogs||workLogs.length==0) return;
+        if (!workLogs||workLogs.length==0) {
+            var noData='没有数据...';
+            $('#peopleChart').empty().html(noData);
+            $('#categoryChart').empty().html(noData);
+            $('#commentChart').empty().html(noData);
+            $('#likeChart').empty().html(noData);
+            return;
+        }
 
         var categoryData = _.groupBy(workLogs,'TAGS');
         _.each(categoryData,function(d,idx){
@@ -154,8 +165,6 @@ window.BrowseLogPeopleView = Backbone.View.extend({
             $(this.el).empty().html(this.template({people:modelData})).addClass('h-scroll-bar');
 
             this.updatePeopleStatus(this.condition.people);
-
-            this.renderLogView();
         }
 
         return this;
@@ -293,6 +302,7 @@ window.BrowseLogListView = Backbone.View.extend({
            this.$el.append('<span class="label label-warning" style="font-size: 14px;padding: 10px 20px;">'+i18n.worklogDataEmpty+'</span>');
         }
         $(constants.PRETTY_TIME_CLASS,this.el).prettyDate({attribute:"value"});
+        app.viewLogView.refreshReports();ß
         return this;
     }
 });
@@ -335,7 +345,7 @@ window.BrowseLogItemView = Backbone.View.extend({
 
         } else {
             //nice
-            $.post('/worklog-data/nice',{referId:t[1]},function(data) {
+            $.post(window.rootUri+'/worklog-data/nice',{referId:t[1]},function(data) {
                 if (_.isNumber(data)) {
                     var $nice = $('#nice-'+t[1]);
                     var count = parseInt($nice.text())+1;
@@ -419,7 +429,7 @@ window.BrowseLogPostCommentView = Backbone.View.extend({
     },
     submitPost:function() {
         var self = this,desc = $('textarea',this.el).val(),done=false;
-        CommonUtils.postForm('/worklog-data/newComment',{description:desc,referId:this.model.dataId},function(data,status,jqr) {
+        CommonUtils.postForm(window.rootUri+'/worklog-data/newComment',{description:desc,referId:this.model.dataId},function(data,status,jqr) {
             if (_.isNumber(data)) {
                 var subNode = $('<li>');
                 subNode.html($(new BrowseLogCommentView().template({
@@ -472,7 +482,7 @@ window.EditLogView = Backbone.View.extend({
         //todo: replace with confirm plugin to avoid the browser will prevent the dialog...
             if (confirm(i18n.deleteComfirm)) {
                 var self=this;
-                $.post("/worklog-data/delete",{id : self.currentEvent.id},function(data){
+                $.post(window.rootUri+"/worklog-data/delete",{id : self.currentEvent.id},function(data){
                     if (_.isNumber(data)) {
                         $('#worklogCalendar').fullCalendar('removeEvents',self.currentEvent.id);
                         self.closeEditor(e);
@@ -489,7 +499,7 @@ window.EditLogView = Backbone.View.extend({
     },
 
     refreshTags:function() {
-        $.getJSON('/worklog-data/getTags/',function(data){
+        $.getJSON(window.rootUri+'/worklog-data/getTags/',function(data){
             if (_.isArray(data) && data.length>0) {
                 window.tags=data;
                 var $tags = $('#tags'),optionT= _.template('<option value="<<=ID>>"><<=NAME>></option>');
@@ -598,7 +608,7 @@ window.EditLogView = Backbone.View.extend({
                 CommonUtils.positionPopover(jsEvent.target,$('#editor'));
             },
             eventResize:function( event, dayDelta, minuteDelta, revertFunc, jsEvent, ui, view ) {
-                $.post('/worklog-data/updateTime/',{id:event.id,start:self.formatDate(event.start),
+                $.post(window.rootUri+'/worklog-data/updateTime/',{id:event.id,start:self.formatDate(event.start),
                         end:self.formatDate(event.end)},
                     function(rtn) {
                         //do noting.
@@ -612,7 +622,7 @@ window.EditLogView = Backbone.View.extend({
 
             },
             eventDrop:function( event, dayDelta, minuteDelta, allDay, revertFunc, jsEvent, ui, view ) {
-                $.post('/worklog-data/updateTime/',{id:event.id,start:self.formatDate(event.start),
+                $.post(window.rootUri+'/worklog-data/updateTime/',{id:event.id,start:self.formatDate(event.start),
                         end:self.formatDate(event.end)},
                     function(rtn) {
                         //do noting.
@@ -633,7 +643,7 @@ window.EditLogView = Backbone.View.extend({
                 CommonUtils.positionPopover(jsEvent.target,$('#editor'));
             },
             events: function(start, end, callback) {
-                $.get('/worklog-data/showWorkLogData',{period:Date.parse(start).toString(constants.DATE_FORMAT) + ","+Date.parse(end).toString(constants.DATE_FORMAT),people:teamlogUtils.getCurrentUserId()},function(rtn){
+                $.get(window.rootUri+'/worklog-data/showWorkLogData',{period:Date.parse(start).toString(constants.DATE_FORMAT) + ","+Date.parse(end).toString(constants.DATE_FORMAT),people:teamlogUtils.getCurrentUserId()},function(rtn){
                     if (_.isArray(rtn)) {
                         var events=[];
                                             $.each(rtn,function(idx,v){
@@ -709,7 +719,7 @@ window.EditLogPeopleView = Backbone.View.extend({
 
         if ($span.hasClass('label-info')) {
             //delete
-            $.post('/worklog-data/deleteSharedPerson/',{id:personId.replace('p','')},function(data) {
+            $.post(window.rootUri+'/worklog-data/deleteSharedPerson/',{id:personId.replace('p','')},function(data) {
                 if (_.isNumber(data)) {
                     $span.removeClass('label-info').addClass('hide').hide().attr('title',i18n.notSharePerson);
                 } else {
@@ -719,7 +729,7 @@ window.EditLogPeopleView = Backbone.View.extend({
 
         } else {
             //add
-            $.post('/worklog-data/addSharePerson/', {id:personId.replace('p', '')}, function (data) {
+            $.post(window.rootUri+'/worklog-data/addSharePerson/', {id:personId.replace('p', '')}, function (data) {
                 if (_.isNumber(data)) {
                     $span.removeClass('hide').addClass('label-info').attr('title',i18n.sharePerson);
                 } else {

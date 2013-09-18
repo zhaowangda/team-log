@@ -72,7 +72,6 @@ window.WorkLogRouter = Backbone.Router.extend({
         }
 
         this.browseLogPeopleView.updateCondition({people:people,period:period});
-
     },
 
     selectFunc:function(item) {

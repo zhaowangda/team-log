@@ -84,7 +84,8 @@
             noTag:'<fmt:message key="edit.log.form.tags.none"/>',
             sharePerson:'<fmt:message key="edit.log.people.shared"/>',
             notSharePerson:'<fmt:message key="edit.log.people.not.shared"/>'
-        }
+        };
+        window.rootUri = '${rootUri}';
         $(".close").click(function(e){
             $(this).parent().fadeOut();
             e.preventDefault();

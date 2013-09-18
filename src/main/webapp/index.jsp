@@ -7,6 +7,6 @@
     <title></title>
 </head>
 <body>
-    <jsp:forward page="${rootUri}/worklog"/>
+    <c:redirect  url="/worklog"/>
 </body>
 </html>

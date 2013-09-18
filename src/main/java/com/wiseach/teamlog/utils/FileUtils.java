@@ -19,7 +19,7 @@ public class FileUtils {
 
     public static final String TEMP_AVATAR_FOLDER = "avatarTemp";
     public static final String AVATAR_FOLDER = "avatar";
-    public static final String DEFAULT_AVATAR = UserAuthProcessor.ROOT_URI+"res/imgs/default-avatar.png";
+    public static final String DEFAULT_AVATAR = UserAuthProcessor.ROOT_URI+"/res/imgs/default-avatar.png";
 
     public static void saveBigAvatar(FileBean avatar, String realPath, String filename) {
         try {
@@ -50,7 +50,7 @@ public class FileUtils {
     }
 
     public static String getUserAvatarURL(String avatar) {
-        return (avatar !=null?UserAuthProcessor.ROOT_URI+FileUtils.AVATAR_FOLDER +Constants.ROOT_STRING+ avatar:DEFAULT_AVATAR);
+        return (avatar !=null?UserAuthProcessor.ROOT_URI +Constants.ROOT_STRING+FileUtils.AVATAR_FOLDER +Constants.ROOT_STRING+ avatar:DEFAULT_AVATAR);
     }
 
     public static String getUserBigAvatarURL(Long userId) {
@@ -59,6 +59,6 @@ public class FileUtils {
     }
 
     public static String getUserBigAvatarURL(String avatar) {
-        return (avatar !=null?UserAuthProcessor.ROOT_URI+FileUtils.TEMP_AVATAR_FOLDER +Constants.ROOT_STRING+ avatar: DEFAULT_AVATAR);
+        return (avatar !=null?UserAuthProcessor.ROOT_URI +Constants.ROOT_STRING+FileUtils.TEMP_AVATAR_FOLDER +Constants.ROOT_STRING+ avatar: DEFAULT_AVATAR);
     }
 }

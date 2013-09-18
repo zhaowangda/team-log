@@ -7,7 +7,7 @@ window.templateLoader = {
 
         $.each(views, function(index, view) {
             if (window[view]) {
-                deferreds.push($.get('/worklog/templates/' + view + '.jsp', function(data) {
+                deferreds.push($.get(window.rootUri+'/worklog/templates/' + view + '.jsp', function(data) {
                     window[view].prototype.template = _.template(data);
                 }, 'html'));
             } else {
@@ -126,6 +126,7 @@ window.teamlogUtils = {
         } else {
             obj.AVATAR = "/avatar/"+obj.AVATAR;
         }
+        obj.AVATAR = window.rootUri+obj.AVATAR;
     },
 
     dateProcess:function(dateValue) {

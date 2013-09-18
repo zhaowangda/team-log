@@ -46,9 +46,7 @@ public class WorkLogDataServiceActionBean extends BaseActionBean {
             start = DateTime.parse(datePeriod[0]);
             end = DateTime.parse(datePeriod[1]);
 
-            if (start.equals(end)) {
-                end = end.plusDays(1);
-            }
+            end = end.plusDays(1);
 
             List<Long> userIdList = new ArrayList<Long>();
             for (int i = 0; i < persons.length; i++) {
