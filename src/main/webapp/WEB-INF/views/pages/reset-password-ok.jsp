@@ -13,7 +13,7 @@
                     <fmt:param value="${actionBean.resetEmail}"/>
                 </fmt:message>
             </p>
-            <a href="/login" class="btn btn-primary"><fmt:message key="send.login.label"/></a>
+            <a href="${rootUri}/login" class="btn btn-primary"><fmt:message key="send.login.label"/></a>
         </div>
     </s:layout-component>
 </s:layout-render>

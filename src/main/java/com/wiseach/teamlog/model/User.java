@@ -3,13 +3,13 @@ package com.wiseach.teamlog.model;
 import com.wiseach.teamlog.Constants;
 import com.wiseach.teamlog.db.UserAuthDBHelper;
 import com.wiseach.teamlog.utils.FileUtils;
+import com.wiseach.teamlog.web.security.UserAuthProcessor;
 
 /**
  * User: Arlen Tan
  * 12-8-9 下午6:29
  */
 public class User {
-    public static final String DEFAULT_AVATAR = "/res/imgs/default-avatar.png";
     private Long id;
     private String email,username,password,avatar;
     private Boolean disabled;
@@ -47,7 +47,7 @@ public class User {
     }
 
     public String getAvatar() {
-        return avatar!=null?Constants.ROOT_STRING + FileUtils.AVATAR_FOLDER+Constants.ROOT_STRING +avatar: DEFAULT_AVATAR;
+        return FileUtils.getUserAvatarURL(avatar);
     }
 
     public void setAvatar(String avatar) {

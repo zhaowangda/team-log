@@ -4,7 +4,7 @@
     <s:layout-component name="mainContent">
         <div class="row">
             <div class="span2">
-                <img src="/res/imgs/default-avatar.png">
+                <img src="${rootUri}/res/imgs/default-avatar.png">
             </div>
             <div class="span2">
                 <ul class="nav nav-list">

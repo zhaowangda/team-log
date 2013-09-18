@@ -31,7 +31,7 @@
                     <div class="warning"><fmt:message key="setting.log.type.warning.description" /></div>
                 </c:if>
             </div>
-            <a href="/invite-users/finish" class="btn btn-primary clearfix" style="margin-top: 20px;"><fmt:message key="setting.log.type.button.finish"/></a>
+            <a href="${rootUri}/invite-users/finish" class="btn btn-primary clearfix" style="margin-top: 20px;"><fmt:message key="setting.log.type.button.finish"/></a>
         </div>
 
         <script type="text/javascript">
@@ -40,7 +40,7 @@
                         $('.del-work-type').hide().on('click',function(e) {
                             if (confirm('<fmt:message key="setting.log.type.delete.confirm"/>')) {
                                 var $this = $(this);
-                                $.post('/setting/deleteWorkType/',{typeId:$(this).attr('id')},function(d){
+                                $.post('${rootUri}/setting/deleteWorkType/',{typeId:$(this).attr('id')},function(d){
                                     if (d) {
                                         $this.parent().detach();
                                     }

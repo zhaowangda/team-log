@@ -1,9 +1,9 @@
 <%--<%@include file="/WEB-INF/views/public/tagLib.jsp" %>--%>
 <div style="padding: 8px 0;">
-    <div class="login-info"><span id="username">${userName}</span> <img src="${avatar == null?'/res/imgs/default-avatar.png':avatar}" class="normal-avatar"><span id="userId" class="hide">${userId}</span> </div>
+    <div class="login-info"><span id="username">${userName}</span> <img src="${avatar}" class="normal-avatar"><span id="userId" class="hide">${userId}</span> </div>
     <div id="settingMenu" class="row inner-box form-box">
         <div class="span2">
-            <img src="${avatar == null?'/res/imgs/default-avatar.png':avatar}">
+            <img src="${avatar}">
         </div>
         <div class="span2">
             <ul class="nav nav-list">
@@ -11,30 +11,30 @@
                     <fmt:message key="setting.menu.title"/>
                 </li>
                 <li>
-                    <a href="/change-password"><fmt:message key="setting.menu.change.password"/></a>
+                    <a href="${rootUri}/change-password"><fmt:message key="setting.menu.change.password"/></a>
                 </li>
                 <li>
-                    <a href="/change-avatar"><fmt:message key="setting.menu.change.avatar"/></a>
+                    <a href="${rootUri}/change-avatar"><fmt:message key="setting.menu.change.avatar"/></a>
                 </li>
                 <c:if test="${userName=='admin'}">
                     <li>
-                        <a href="/invite-users"><fmt:message key="setting.menu.invite.users"/></a>
+                        <a href="${rootUri}/invite-users"><fmt:message key="setting.menu.invite.users"/></a>
                     </li>
                     <li>
-                        <a href="/setting"><fmt:message key="setting.menu.define.work-type"/></a>
+                        <a href="${rootUri}/setting"><fmt:message key="setting.menu.define.work-type"/></a>
                     </li>
                     <li>
-                        <a href="/config"><fmt:message key="config.title"/></a>
+                        <a href="${rootUri}/config"><fmt:message key="config.title"/></a>
                     </li>
                 </c:if>
                 <c:if test="${userName!='admin'}">
                     <li>
-                        <a href="/profile"><fmt:message key="setting.menu.change.profile"/></a>
+                        <a href="${rootUri}/profile"><fmt:message key="setting.menu.change.profile"/></a>
                     </li>
                 </c:if>
                 <li class="divider"></li>
                 <li>
-                    <a href="/logout"><fmt:message key="setting.menu.logout"/></a>
+                    <a href="${rootUri}/logout"><fmt:message key="setting.menu.logout"/></a>
                 </li>
             </ul>
         </div>

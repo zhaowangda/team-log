@@ -42,7 +42,7 @@
                     <fmt:param value="${disableUser}"/>
                 </fmt:message>
             </p>
-            <a href="/invite-users/finish" class="btn btn-primary" style="margin-top: 20px;"><fmt:message key="invite.user.button.finish"/></a>
+            <a href="${rootUri}/invite-users/finish" class="btn btn-primary" style="margin-top: 20px;"><fmt:message key="invite.user.button.finish"/></a>
         </div>
 
         <script type="text/javascript">
@@ -50,7 +50,7 @@
                         $('#inviteEmail').focus();
                         $(".user-list :checkbox").on('click', function (e) {
                             var isChecked = ($(e.target).attr('checked') == 'checked');
-                            $.post('/user-management/userState/' + $(e.target).attr('id') + '/' + isChecked);
+                            $.post('${rootUri}/user-management/userState/' + $(e.target).attr('id') + '/' + isChecked);
                         });
                     }
             );

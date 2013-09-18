@@ -7,7 +7,7 @@
         </div>
         <h3 class="sub-content"><fmt:message key="${errorDescription}"/></h3>
         <div class="form-box">
-            <a href="/" class="btn btn-primary"><fmt:message key="error.box.go.home" /> </a>
+            <a href="${rootUri}/" class="btn btn-primary"><fmt:message key="error.box.go.home" /> </a>
         </div>
     </s:layout-component>
 </s:layout-render>

@@ -5,4 +5,4 @@
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 
  <%--Short hand for the context root.--%>
-<c:set var="ctx" value="${pageContext.request.contextPath}"/>
+<c:set var="rootUri" value="${pageContext.request.contextPath}"/>

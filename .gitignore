@@ -3,9 +3,15 @@
 /teamlog/
 /build/
 /target/
+/.idea/
+/.settings/
 ##files##
 .DS_Store
 *.class
+.classpath
+.project
+*.iml
+
 
 # Package Files #
 *.jar

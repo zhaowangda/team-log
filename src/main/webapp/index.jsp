@@ -7,6 +7,6 @@
     <title></title>
 </head>
 <body>
-    <jsp:forward page="/worklog"/>
+    <jsp:forward page="${rootUri}/worklog"/>
 </body>
 </html>

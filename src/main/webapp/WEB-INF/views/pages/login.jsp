@@ -18,9 +18,9 @@
                     <p style="margin-top: 10px;"><fmt:message key="login.info"/></p>
                     <p></p>
                     <ul class="login-ul">
-                        <li><img src="/res/imgs/log_edit.png" alt="edit-log"><fmt:message key="login.function.editLog"/></li>
-                        <li><img src="/res/imgs/analysis.png" alt="analysis"><fmt:message key="login.function.analysis"/></li>
-                        <li><img src="/res/imgs/comment.png" alt="comment"><fmt:message key="login.function.comment"/></li>
+                        <li><img src="${rootUri}/res/imgs/log_edit.png" alt="edit-log"><fmt:message key="login.function.editLog"/></li>
+                        <li><img src="${rootUri}/res/imgs/analysis.png" alt="analysis"><fmt:message key="login.function.analysis"/></li>
+                        <li><img src="${rootUri}/res/imgs/comment.png" alt="comment"><fmt:message key="login.function.comment"/></li>
                     </ul>
                 </div>
             </div>
@@ -55,7 +55,7 @@
                             </label>
                         </div>
                     </s:form>
-                    <a href="/send-reset-password-email"><fmt:message key="login.forgot"/></a>
+                    <a href="${rootUri}/send-reset-password-email"><fmt:message key="login.forgot"/></a>
             </div>
         </div>
         <script type="text/javascript">$('#userName').focus();</script>

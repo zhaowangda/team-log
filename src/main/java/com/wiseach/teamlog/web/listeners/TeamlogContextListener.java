@@ -29,6 +29,7 @@ public class TeamlogContextListener implements ServletContextListener {
     @Override
     public void contextInitialized(ServletContextEvent servletContextEvent) {
         DBPool.startServer();
+        UserAuthProcessor.updateRootUri(servletContextEvent.getServletContext().getContextPath());
         UserAuthProcessor.updateFirstUserStatus();
 
         scheduler = Executors.newSingleThreadScheduledExecutor();

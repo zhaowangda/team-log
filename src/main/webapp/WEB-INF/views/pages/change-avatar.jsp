@@ -2,12 +2,12 @@
 <fmt:message key="change.avatar.title" var="titleStr"/>
 <s:layout-render name="/WEB-INF/views/layout/login-layout.jsp" title="${titleStr}">
     <s:layout-component name="mainContent">
-        <link rel="stylesheet" href="/res/jcrop/jquery.Jcrop.css" media="all" type="text/css">
+        <link rel="stylesheet" href="${rootUri}/res/jcrop/jquery.Jcrop.css" media="all" type="text/css">
         <%--<link rel="stylesheet" href="/res/upload/css/jquery.fileupload-ui.css" media="all" type="text/css">--%>
-        <script type="text/javascript" src="/res/jcrop/jquery.Jcrop.js"></script>
-        <script src="/res/upload/vendor/jquery.ui.widget.js"></script>
-        <script src="/res/upload/jquery.iframe-transport.js"></script>
-        <script src="/res/upload/jquery.fileupload.js"></script>
+        <script type="text/javascript" src="${rootUri}/res/jcrop/jquery.Jcrop.js"></script>
+        <script src="${rootUri}/res/upload/vendor/jquery.ui.widget.js"></script>
+        <script src="${rootUri}/res/upload/jquery.iframe-transport.js"></script>
+        <script src="${rootUri}/res/upload/jquery.fileupload.js"></script>
         <div class="page-header">
             <h2>${titleStr}</h2>
         </div>
@@ -77,11 +77,11 @@
                 initJcrop();
 
                 $('#upload').fileupload({
-                    url:'/change-avatar/uploadAvatar',
+                    url:'${rootUri}/change-avatar/uploadAvatar',
                     fileInput:$('#avatarInput'),
                     done:function(e,d){
                         if (d!='') {
-                            var src = "/avatarTemp/"+ d.result+"?t="+new Date().getMilliseconds();
+                            var src = "${rootUri}/avatarTemp/"+ d.result+"?t="+new Date().getMilliseconds();
                             $('.avatar-result').empty().append($('<img id="jcrop-view">').attr('src',src));
                             initJcrop();
                             $('#preview').attr("src",src).show();

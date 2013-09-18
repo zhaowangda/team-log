@@ -13,7 +13,7 @@
                     <fmt:param value="${actionBean.firstUserEmail}"/>
                 </fmt:message>
             </p>
-            <a class="btn btn-primary" href="/login"><fmt:message key="create.first.user.ok.login"/></a>
+            <a class="btn btn-primary" href="${rootUri}/login"><fmt:message key="create.first.user.ok.login"/></a>
         </div>
     </s:layout-component>
 </s:layout-render>

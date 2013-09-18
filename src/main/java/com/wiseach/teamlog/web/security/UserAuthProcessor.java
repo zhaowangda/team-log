@@ -6,6 +6,7 @@ import com.wiseach.teamlog.model.User;
 import com.wiseach.teamlog.utils.FileUtils;
 import net.sourceforge.stripes.action.ActionBeanContext;
 import org.apache.commons.codec.digest.DigestUtils;
+import org.h2.util.StringUtils;
 
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpSession;
@@ -21,6 +22,7 @@ public class UserAuthProcessor {
     public static final String USER_ID_KEY = "userId";
     public static final String USER_NAME_KEY = "userName";
     public static final String USER_AVATAR_KEY = "avatar";
+    public static String ROOT_URI = "/";
     private static boolean firstUserCreated;
     private static String adminEmail;
 
@@ -141,5 +143,9 @@ public class UserAuthProcessor {
 
     public static void updateUserAvatar(ActionBeanContext context) {
         context.getRequest().getSession().setAttribute(USER_AVATAR_KEY, FileUtils.getUserAvatarURL(getUserId(context)));
+    }
+
+    public static void updateRootUri(String rootUri) {
+        if (!StringUtils.isNullOrEmpty(rootUri)) ROOT_URI = rootUri;
     }
 }

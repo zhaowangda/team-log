@@ -11,7 +11,7 @@
             <p style="margin: 20px 0;">
                 ${successfulInfo}
             </p>
-            <a href="/login" class="btn btn-primary"><fmt:message key="${successfulButtonText == null ? 'successful.box.go.login': successfulButtonText}"/></a>
+            <a href="${rootUri}/login" class="btn btn-primary"><fmt:message key="${successfulButtonText == null ? 'successful.box.go.login': successfulButtonText}"/></a>
         </div>
     </s:layout-component>
 </s:layout-render>

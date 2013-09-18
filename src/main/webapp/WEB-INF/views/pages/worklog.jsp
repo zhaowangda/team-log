@@ -4,17 +4,17 @@
 <head>
     <title>TeamLog|<fmt:message key="worklog.title"/> </title>
     <META http-equiv="Content-Type" content="text/html;charset=UTF-8">
-    <link rel="stylesheet" href="/res/bootstrap/css/bootstrap.css" media="all" type="text/css">
-    <link rel="stylesheet" href="/res/reject/jquery.reject.css" media="all" type="text/css">
-    <script type="text/javascript" src="/res/jqueryui/js/jquery-1.8.0.min.js"></script>
-    <script type="text/javascript" src="/res/js/underscore-1.3.3.js"></script>
-    <script type="text/javascript" src="/res/js/backbone-0.9.2.js"></script>
-    <script type="text/javascript" src="/res/reject/jquery.reject.min.js"></script>
+    <link rel="stylesheet" href="${rootUri}/res/bootstrap/css/bootstrap.css" media="all" type="text/css">
+    <link rel="stylesheet" href="${rootUri}/res/reject/jquery.reject.css" media="all" type="text/css">
+    <script type="text/javascript" src="${rootUri}/res/jqueryui/js/jquery-1.8.0.min.js"></script>
+    <script type="text/javascript" src="${rootUri}/res/js/underscore-1.3.3.js"></script>
+    <script type="text/javascript" src="${rootUri}/res/js/backbone-0.9.2.js"></script>
+    <script type="text/javascript" src="${rootUri}/res/reject/jquery.reject.min.js"></script>
 </head>
-<body onload="$.reject({display: ['firefox','chrome','safari'],imagePath:'/res/reject/imgs/',header: '<fmt:message key="reject.head"/>',paragraph1: '<fmt:message key="reject.p1"/>',  paragraph2: '<fmt:message key="reject.p2"/>',closeMessage: '<fmt:message key="reject.close.tips"/>',closeLink: '<fmt:message key="reject.close"/>'});">
+<body onload="$.reject({display: ['firefox','chrome','safari'],imagePath:'${rootUri}/res/reject/imgs/',header: '<fmt:message key="reject.head"/>',paragraph1: '<fmt:message key="reject.p1"/>',  paragraph2: '<fmt:message key="reject.p2"/>',closeMessage: '<fmt:message key="reject.close.tips"/>',closeLink: '<fmt:message key="reject.close"/>'});">
 <div class="wrapper">
     <div class="header content clearfix">
-        <a href="/"><img src="/res/imgs/teamlog-logo.png" class="logo-img" alt="teamlog logo image"></a>
+        <a href="${rootUri}/"><img src="${rootUri}/res/imgs/teamlog-logo.png" class="logo-img" alt="teamlog logo image"></a>
         <div class="msg-box"><span>asdf</span><a href="#" class="close"><fmt:message key="button.close.label"/></a></div>
         <div class="header-content"><%@include file="/WEB-INF/views/include/setting.jsp"%></div>
     </div>
@@ -91,34 +91,34 @@
         }).parent().hide();
 
     </script>
-    <script type="text/javascript" src="/res/js/jquery.prettydate.js"></script>
-    <script type="text/javascript" src="/res/bDate/date.js"></script>
-    <link rel="stylesheet" href="/res/bDate/daterangepicker.css" media="all" type="text/css">
-    <script type="text/javascript" src="/res/bDate/daterangepicker.js"></script>
+    <script type="text/javascript" src="${rootUri}/res/js/jquery.prettydate.js"></script>
+    <script type="text/javascript" src="${rootUri}/res/bDate/date.js"></script>
+    <link rel="stylesheet" href="${rootUri}/res/bDate/daterangepicker.css" media="all" type="text/css">
+    <script type="text/javascript" src="${rootUri}/res/bDate/daterangepicker.js"></script>
 
-    <link rel="stylesheet" href="/res/jqueryui/css/ui-lightness/jquery-ui-1.8.23.custom.css" media="all" type="text/css">
-    <script type='text/javascript' src='/res/jqueryui/js/jquery-ui-1.8.23.custom.min.js'></script>
-    <script type="text/javascript" src="/res/fullCalendar/fullcalendar.js"></script>
-    <link rel='stylesheet' type='text/css' href='/res/fullCalendar/fullcalendar.css' />
-    <link rel='stylesheet' type='text/css' href='/res/fullCalendar/fullcalendar.print.css' media='print' />
+    <link rel="stylesheet" href="${rootUri}/res/jqueryui/css/ui-lightness/jquery-ui-1.8.23.custom.css" media="all" type="text/css">
+    <script type='text/javascript' src='${rootUri}/res/jqueryui/js/jquery-ui-1.8.23.custom.min.js'></script>
+    <script type="text/javascript" src="${rootUri}/res/fullCalendar/fullcalendar.js"></script>
+    <link rel='stylesheet' type='text/css' href='${rootUri}/res/fullCalendar/fullcalendar.css' />
+    <link rel='stylesheet' type='text/css' href='${rootUri}/res/fullCalendar/fullcalendar.print.css' media='print' />
 
-    <script type="text/javascript" src="/res/js/jquery.form.3.14.js"></script>
+    <script type="text/javascript" src="${rootUri}/res/js/jquery.form.3.14.js"></script>
 
-    <link rel="stylesheet" href="/res/css/func.css" media="all" type="text/css">
+    <link rel="stylesheet" href="${rootUri}/res/css/func.css" media="all" type="text/css">
 
-    <link rel="stylesheet" href="/res/jqPlot/jquery.jqplot.css" media="all" type="text/css">
-    <script type="text/javascript" src="/res/jqPlot/jquery.jqplot.js"></script>
-    <script type="text/javascript" src="/res/jqPlot/plugins/jqplot.barRenderer.js"></script>
-    <script type="text/javascript" src="/res/jqPlot/plugins/jqplot.highlighter.js"></script>
-    <script type="text/javascript" src="/res/jqPlot/plugins/jqplot.categoryAxisRenderer.js"></script>
-    <script type="text/javascript" src="/res/jqPlot/plugins/jqplot.pointLabels.js"></script>
+    <link rel="stylesheet" href="${rootUri}/res/jqPlot/jquery.jqplot.css" media="all" type="text/css">
+    <script type="text/javascript" src="${rootUri}/res/jqPlot/jquery.jqplot.js"></script>
+    <script type="text/javascript" src="${rootUri}/res/jqPlot/plugins/jqplot.barRenderer.js"></script>
+    <script type="text/javascript" src="${rootUri}/res/jqPlot/plugins/jqplot.highlighter.js"></script>
+    <script type="text/javascript" src="${rootUri}/res/jqPlot/plugins/jqplot.categoryAxisRenderer.js"></script>
+    <script type="text/javascript" src="${rootUri}/res/jqPlot/plugins/jqplot.pointLabels.js"></script>
 
-    <script type="text/javascript" src="/res/bootstrap/js/bootstrap.js"></script>
-    <script type="text/javascript" src="/worklog/utils.js"></script>
-    <script type="text/javascript" src="/worklog/models/worklogModels.js"></script>
-    <script type="text/javascript" src="/worklog/views/browseViews.js"></script>
-    <script type="text/javascript" src="/worklog/main.js"></script>
-    <script type="text/javascript" src="/res/js/scrolltotop.js"></script>
+    <script type="text/javascript" src="${rootUri}/res/bootstrap/js/bootstrap.js"></script>
+    <script type="text/javascript" src="${rootUri}/worklog/utils.js"></script>
+    <script type="text/javascript" src="${rootUri}/worklog/models/worklogModels.js"></script>
+    <script type="text/javascript" src="${rootUri}/worklog/views/browseViews.js"></script>
+    <script type="text/javascript" src="${rootUri}/worklog/main.js"></script>
+    <script type="text/javascript" src="${rootUri}/res/js/scrolltotop.js"></script>
 </div>
 </body>
 </html>

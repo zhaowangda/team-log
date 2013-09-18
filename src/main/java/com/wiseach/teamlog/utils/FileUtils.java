@@ -2,6 +2,7 @@ package com.wiseach.teamlog.utils;
 
 import com.wiseach.teamlog.Constants;
 import com.wiseach.teamlog.db.UserAuthDBHelper;
+import com.wiseach.teamlog.web.security.UserAuthProcessor;
 import net.coobird.thumbnailator.Thumbnails;
 import net.sourceforge.stripes.action.FileBean;
 
@@ -18,7 +19,7 @@ public class FileUtils {
 
     public static final String TEMP_AVATAR_FOLDER = "avatarTemp";
     public static final String AVATAR_FOLDER = "avatar";
-    private static final String DEFAULT_AVATAR = "/res/imgs/default-avatar.png";
+    public static final String DEFAULT_AVATAR = UserAuthProcessor.ROOT_URI+"res/imgs/default-avatar.png";
 
     public static void saveBigAvatar(FileBean avatar, String realPath, String filename) {
         try {
@@ -45,11 +46,19 @@ public class FileUtils {
 
     public static String getUserAvatarURL(Long userId) {
         String userAvatar = UserAuthDBHelper.getUserAvatar(userId);
-        return (userAvatar !=null?Constants.ROOT_STRING+FileUtils.AVATAR_FOLDER +Constants.ROOT_STRING+ userAvatar:DEFAULT_AVATAR);
+        return getUserAvatarURL(userAvatar);
+    }
+
+    public static String getUserAvatarURL(String avatar) {
+        return (avatar !=null?UserAuthProcessor.ROOT_URI+FileUtils.AVATAR_FOLDER +Constants.ROOT_STRING+ avatar:DEFAULT_AVATAR);
     }
 
     public static String getUserBigAvatarURL(Long userId) {
         String userAvatar = UserAuthDBHelper.getUserAvatar(userId);
-        return (userAvatar !=null?Constants.ROOT_STRING+FileUtils.TEMP_AVATAR_FOLDER +Constants.ROOT_STRING+ userAvatar: DEFAULT_AVATAR);
+        return getUserBigAvatarURL(userAvatar);
+    }
+
+    public static String getUserBigAvatarURL(String avatar) {
+        return (avatar !=null?UserAuthProcessor.ROOT_URI+FileUtils.TEMP_AVATAR_FOLDER +Constants.ROOT_STRING+ avatar: DEFAULT_AVATAR);
     }
 }

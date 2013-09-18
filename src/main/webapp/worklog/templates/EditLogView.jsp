@@ -8,7 +8,7 @@
     <h3 class="popover-title"><fmt:message key="edit.log.form.title"/></h3>
     <div class="popover-content">
         <div>
-            <form id="worklogForm" action="/worklog-data/updateContent/" method="post">
+            <form id="worklogForm" action="${rootUri}/worklog-data/updateContent/" method="post">
                 <input id="id" name="id" type="hidden">
                 <label for="description"><fmt:message key="edit.log.form.description"/></label>
                 <textarea id="description" style="width: 354px;" rows="5" name="description" class="focused"></textarea>

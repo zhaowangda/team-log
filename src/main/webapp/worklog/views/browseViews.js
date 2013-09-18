@@ -1,5 +1,6 @@
 window.BrowseLogHeaderView = Backbone.View.extend({
     render:function(period) {
+        var needDelegate=this.$el.children().size()>0;
         $(this.el).html(this.template());
         $('#reportrange',this.el).daterangepicker(
             {
@@ -23,6 +24,8 @@ window.BrowseLogHeaderView = Backbone.View.extend({
         }
 
         $('#reportrange span',this.el).html(period);
+
+        if (needDelegate) this.delegateEvents();
 
         return this;
     },
