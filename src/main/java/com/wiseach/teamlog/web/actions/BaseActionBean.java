@@ -97,7 +97,7 @@ public class BaseActionBean implements ActionBean {
         sb.deleteCharAt(sb.length() - 1);
         sb.deleteCharAt(0);
 
-        return sb.toString();
+        return Constants.ROOT_STRING+sb.toString();
     }
 
     protected Resolution getErrorJsonResolution(String msgKey) {

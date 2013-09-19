@@ -116,6 +116,11 @@ window.CommonUtils ={
     },
     formatUtcDate:function(str) {
         return str.replace('T',' ').substring(0,str.indexOf('.'));
+    },
+    scrollTo:function($container,$item) {
+        $container.scrollTop(
+            $item.offset().top - $container.offset().top + $container.scrollTop()
+        );
     }
 }
 

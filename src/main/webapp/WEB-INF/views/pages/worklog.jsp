@@ -54,7 +54,7 @@
                         <div class="f-right-corner-2"></div>
                     </div>
                 </div>
-                <div id="data-container" style="padding: 20px;min-height: 600px;">
+                <div id="data-container" style="padding: 20px;min-height: 540px;">
                     <%--<%@include file="/WEB-INF/views/mockJsp/view.jsp"%>--%>
                 </div>
                 <%--<%@include file="/test.html"%>--%>

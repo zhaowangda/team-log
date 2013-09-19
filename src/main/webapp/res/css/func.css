@@ -66,6 +66,7 @@ body {
 .f-content-inner {
     margin: 0 252px 0 100px;
     width: auto;
+    min-width: 610px;
     position: relative;
 }
 
@@ -166,7 +167,7 @@ body {
 
 .function-context-bar {
     position: fixed;
-    top:52px;
+    top:51px;
     right: 15px;
     bottom: 15px;
     width: 200px;
@@ -273,6 +274,9 @@ body {
     margin-right: 10px;
 }
 
+.popover {
+    position: fixed;
+}
 .log-list {
     margin: 20px;
 }

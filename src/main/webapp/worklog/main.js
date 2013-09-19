@@ -57,12 +57,10 @@ window.WorkLogRouter = Backbone.Router.extend({
         if (!this.viewLogView) {
             this.viewLogView = new BrowseLogHeaderView();
         }
-//        $(constants.NUMBER_SIGN + 'data-container').empty().html(this.viewLogView.render(period).el);
 
         if (!this.browseLogPeopleView) {
             this.browseLogPeopleView = new BrowseLogPeopleView();
             this.browseLogPeopleView.model.fetch();
-//            $('.function-context-bar').empty().html(this.browseLogPeopleView.el);
         }
         if (this.currModule == 'edit') {
             $(constants.NUMBER_SIGN + 'data-container').empty().html(this.viewLogView.render(period).el);

@@ -1,5 +1,6 @@
 package com.wiseach.teamlog.web.security;
 
+import com.wiseach.teamlog.Constants;
 import com.wiseach.teamlog.web.actions.*;
 import com.wiseach.teamlog.web.resolutions.JsonResolution;
 import net.sourceforge.stripes.action.RedirectResolution;
@@ -39,7 +40,7 @@ public class SecurityInterceptor implements Interceptor{
                     return new JsonResolution<String>(NO_LOGIN);
                 } else {
                     RedirectResolution redirectResolution = new RedirectResolution(LoginActionBean.class);
-                    String lastUrl = actionBean.getLastUrl();
+                    String lastUrl = actionBean.getLastUrl().replace(UserAuthProcessor.ROOT_URI, Constants.EMPTY_STRING);
                     return StringUtils.isNullOrEmpty(lastUrl)?redirectResolution:redirectResolution.addParameter(GOTO_URL, lastUrl);
                 }
             }

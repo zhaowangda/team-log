@@ -302,7 +302,7 @@ window.BrowseLogListView = Backbone.View.extend({
            this.$el.append('<span class="label label-warning" style="font-size: 14px;padding: 10px 20px;">'+i18n.worklogDataEmpty+'</span>');
         }
         $(constants.PRETTY_TIME_CLASS,this.el).prettyDate({attribute:"value"});
-        app.viewLogView.refreshReports();ß
+        app.viewLogView.refreshReports();
         return this;
     }
 });
@@ -433,7 +433,7 @@ window.BrowseLogPostCommentView = Backbone.View.extend({
             if (_.isNumber(data)) {
                 var subNode = $('<li>');
                 subNode.html($(new BrowseLogCommentView().template({
-                    ID:teamlogUtils.getCurrentUserId(),
+                    USERID:teamlogUtils.getCurrentUserId(),
                     AVATAR:self.model.avatar,DESCRIPTION:desc,
                     CREATETIME:CommonUtils.formatDateWithTimezone(new Date()),USERNAME:self.model.username
                 }))).appendTo(self.$el.prev()).find(constants.PRETTY_TIME_CLASS).prettyDate();
@@ -571,6 +571,12 @@ window.EditLogView = Backbone.View.extend({
                 center: 'title',
                 right: 'agendaWeek,agendaDay'
             },
+            firstHour:7,
+            contentHeight:$(window).height() - 180,
+            handleWindowResize:true,
+            windowResize:function(v) {
+                v.setHeight($(window).height() - 180);
+            },
             monthNames:['一月','二月','三月','四月','五月','六月','七月','八月','九月','十月','十一月','十二月'],
             monthNamesShort:['01','02','03','04','05','06','07','08','09','10','11','12'],
             dayNames:['星期日','星期一','星期二','星期三','星期四','星期五','星期六'],
@@ -595,7 +601,6 @@ window.EditLogView = Backbone.View.extend({
                 week: 'M/d ddd', // Mon 9/7
                 day: 'M/d dddd'  // Monday 9/7
             },
-            height:2000,
             defaultView:'agendaWeek',
             selectable:true,
             unselectAuto:false,
@@ -664,6 +669,10 @@ window.EditLogView = Backbone.View.extend({
                 });
             }
         });
+        this.refreshCalendarHeight();
+    },
+    refreshCalendarHeight:function() {
+        $('#worklogCalendar').fullCalendar('getView').setHeight($(window).height() - 180);
     }
 });
 
