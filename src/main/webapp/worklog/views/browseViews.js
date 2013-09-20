@@ -192,9 +192,9 @@ window.BrowseLogPeopleView = Backbone.View.extend({
         }
 
         var parent = this.el;
-        $("input",parent).prop(constants.CHECKED_ATTR,false).removeClass(constants.ACTIVE_CLASS);
+        $("input[id!='c0'][type='checkbox']",parent).prop(constants.CHECKED_ATTR,false).removeClass(constants.ACTIVE_CLASS);
         $.each(people.split(constants.COMMA_CHAR),function(i,d) {
-            $('input[id="c'+d+'"]',parent).attr(constants.CHECKED_ATTR,constants.CHECKED_ATTR).parent().addClass('active');
+            $('input[id="c'+d+'"]',parent).attr(constants.CHECKED_ATTR,constants.CHECKED_ATTR).parent().addClass(constants.ACTIVE_CLASS);
         });
     },
 

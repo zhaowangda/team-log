@@ -165,7 +165,5 @@ window.teamlogUtils = {
     },
     hideReport:function() {
         app.navigate(teamlogUtils.getBrowseWorklogUrl(),true);
-        $('#work-log-reports').hide();
-        $('#showReportBtn').removeClass('active');
     }
 }

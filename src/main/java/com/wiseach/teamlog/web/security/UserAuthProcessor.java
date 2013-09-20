@@ -22,7 +22,7 @@ public class UserAuthProcessor {
     public static final String USER_ID_KEY = "userId";
     public static final String USER_NAME_KEY = "userName";
     public static final String USER_AVATAR_KEY = "avatar";
-    public static String ROOT_URI = "/";
+    public static String ROOT_URI = "";
     private static boolean firstUserCreated;
     private static String adminEmail;
 
