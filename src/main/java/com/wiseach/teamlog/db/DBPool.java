@@ -26,10 +26,14 @@ public class DBPool {
 //    private static String DBURL_TCP = "jdbc:h2:tcp://localhost/C:\\projects\\teamlog\\sources\\db\\teamlog";
     public static final String SA = "sa";
     public static final String TCP_LOCALHOST_9092 = "tcp://localhost:9092";
+    public static Server TCP_SERVER;
 
     public static void startServer() {
         try {
-            Server.createTcpServer().start();
+            if (TCP_SERVER==null || !TCP_SERVER.isRunning(true)) {
+                TCP_SERVER = Server.createTcpServer();
+                TCP_SERVER.start();
+            }
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -51,6 +55,7 @@ public class DBPool {
         connectionPool=null;
         try {
             Server.shutdownTcpServer(TCP_LOCALHOST_9092, Constants.EMPTY_STRING,true,true);
+            if (TCP_SERVER!=null) TCP_SERVER.shutdown();
         } catch (SQLException e) {
             e.printStackTrace();
         }
