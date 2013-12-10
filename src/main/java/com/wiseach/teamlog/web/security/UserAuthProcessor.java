@@ -1,12 +1,12 @@
 package com.wiseach.teamlog.web.security;
 
+import com.mysql.jdbc.StringUtils;
 import com.wiseach.teamlog.Constants;
 import com.wiseach.teamlog.db.UserAuthDBHelper;
 import com.wiseach.teamlog.model.User;
 import com.wiseach.teamlog.utils.FileUtils;
 import net.sourceforge.stripes.action.ActionBeanContext;
 import org.apache.commons.codec.digest.DigestUtils;
-import org.h2.util.StringUtils;
 
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpSession;

@@ -1,15 +1,10 @@
 package com.wiseach.teamlog.db;
 
-import com.wiseach.teamlog.Constants;
-import com.wiseach.teamlog.utils.TeamlogLocalizationUtils;
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
-import org.h2.jdbcx.JdbcConnectionPool;
-import org.h2.tools.Server;
+import com.jolbox.bonecp.BoneCP;
+import com.jolbox.bonecp.BoneCPConfig;
 
 import java.sql.Connection;
 import java.sql.SQLException;
-import java.sql.Statement;
 
 /**
  * User: Arlen Tan
@@ -17,48 +12,27 @@ import java.sql.Statement;
  */
 public class DBPool {
 
-    public static final String DB_MODEL = TeamlogLocalizationUtils.getSystemParams("db.model").toLowerCase();
-    private static JdbcConnectionPool connectionPool;
+    private static BoneCP connectionPool;
     private static final ThreadLocal<Connection> connections= new ThreadLocal<Connection>();
-    private static final Log log = LogFactory.getLog(DBPool.class);
-    private static final String DBURL_TCP = "jdbc:h2:tcp://localhost/~/teamlog";
-    private static final String DBURL_EMBEDDED = "jdbc:h2:~/teamlog";
-//    private static String DBURL_TCP = "jdbc:h2:tcp://localhost/C:\\projects\\teamlog\\sources\\db\\teamlog";
-    public static final String SA = "sa";
-    public static final String TCP_LOCALHOST_9092 = "tcp://localhost:9092";
-    public static Server TCP_SERVER;
 
     public static void startServer() {
         try {
-            if (TCP_SERVER==null || !TCP_SERVER.isRunning(true)) {
-                TCP_SERVER = Server.createTcpServer();
-                TCP_SERVER.start();
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        connectionPool = JdbcConnectionPool.create(DB_MODEL.equals("embedded")?DBURL_EMBEDDED:DBURL_TCP, SA, SA);
-        DBMonitor.initialDB();
-    }
+            Class.forName("com.mysql.jdbc.Driver");
+            BoneCPConfig config = new BoneCPConfig();	// create a new configuration object
 
-    public static void stopServer() {
-        try {
-            Connection connection = getConnection();
-            Statement stat = connection.createStatement();
-            stat.execute("SHUTDOWN");
-            stat.close();
+            config.setJdbcUrl("jdbc:mysql://localhost:3306/teamlog?useUnicode=yes&characterEncoding=utf8");	// set the JDBC url
+            config.setUsername("teamlog_admin");			// set the username
+            config.setPassword("teamlog");				// set the password
+
+            connectionPool = new BoneCP(config); 	// setup the connection pool
+            DBMonitor.initialDB();
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
 
-        connectionPool.dispose();
-        connectionPool=null;
-        try {
-            Server.shutdownTcpServer(TCP_LOCALHOST_9092, Constants.EMPTY_STRING,true,true);
-            if (TCP_SERVER!=null) TCP_SERVER.shutdown();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
+    public static void stopServer() {
+        connectionPool.shutdown();
     }
 
     public static final Connection getConnection() {

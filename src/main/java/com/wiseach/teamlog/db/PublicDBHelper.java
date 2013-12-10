@@ -101,7 +101,7 @@ public class PublicDBHelper {
             @Override
             public void doAction(Connection connection) {
                 try {
-                    result = QUERY_RUNNER.query(connection,"select IDENTITY()",new LongResultSetHandler());
+                    result = QUERY_RUNNER.query(connection,"select LAST_INSERT_ID()",new LongResultSetHandler());
                 } catch (SQLException e) {
                     e.printStackTrace();
                 }

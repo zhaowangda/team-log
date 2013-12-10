@@ -1,5 +1,6 @@
 package com.wiseach.teamlog.web.security;
 
+import com.mysql.jdbc.StringUtils;
 import com.wiseach.teamlog.Constants;
 import com.wiseach.teamlog.web.actions.*;
 import com.wiseach.teamlog.web.resolutions.JsonResolution;
@@ -9,7 +10,6 @@ import net.sourceforge.stripes.controller.ExecutionContext;
 import net.sourceforge.stripes.controller.Interceptor;
 import net.sourceforge.stripes.controller.Intercepts;
 import net.sourceforge.stripes.controller.LifecycleStage;
-import org.h2.util.StringUtils;
 
 import java.util.Arrays;
 import java.util.List;

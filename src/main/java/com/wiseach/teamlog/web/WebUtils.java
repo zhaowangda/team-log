@@ -1,9 +1,9 @@
 package com.wiseach.teamlog.web;
 
+import com.mysql.jdbc.StringUtils;
 import com.wiseach.teamlog.Constants;
 import com.wiseach.teamlog.utils.TeamlogLocalizationUtils;
 import com.wiseach.teamlog.web.security.UserAuthProcessor;
-import org.h2.util.StringUtils;
 
 /**
  * User: Arlen Tan

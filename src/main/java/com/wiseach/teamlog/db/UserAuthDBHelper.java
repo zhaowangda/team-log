@@ -1,11 +1,11 @@
 package com.wiseach.teamlog.db;
 
+import com.mysql.jdbc.StringUtils;
 import com.wiseach.teamlog.Constants;
 import com.wiseach.teamlog.model.User;
 import com.wiseach.teamlog.model.UserInfo;
 import org.apache.commons.dbutils.handlers.BeanHandler;
 import org.apache.commons.dbutils.handlers.BeanListHandler;
-import org.h2.util.StringUtils;
 
 import java.util.List;
 import java.util.UUID;
@@ -30,9 +30,9 @@ public class UserAuthDBHelper {
         uuidStr = PublicDBHelper.getStringData("select activateuuid from user where username=? and email=?",name,email);
         if (StringUtils.isNullOrEmpty(uuidStr)) {
             UUID uuid = UUID.randomUUID();
-            PublicDBHelper.exec("insert into user(username,email,activateuuid,createTime,disabled) values (?,?,?,dateadd(\"DAY\",2,current_timestamp()),false)",name,email, uuid);
-            PublicDBHelper.exec("insert into userInfo(id) values(select id from user where username=?)",name);
             uuidStr = uuid.toString();
+            PublicDBHelper.exec("insert into user(username,email,activateuuid,createTime,disabled) values (?,?,?,date_add(current_timestamp(),interval 2 day),false)",name,email, uuidStr);
+            PublicDBHelper.exec("insert into userInfo(id) select id from user where username=?",name);
         }
 
         return uuidStr;
@@ -47,15 +47,15 @@ public class UserAuthDBHelper {
     }
 
     public static boolean activateUser(String uuid, String newPassword) {
-        return PublicDBHelper.exec("update user set password = HASH('SHA256', STRINGTOUTF8(concat(id,?)), 1000),activateUUID = null where activateUUID=?",newPassword,uuid)>0;
+        return PublicDBHelper.exec("update user set password = PASSWORD(concat(id,?)),activateUUID = null where activateUUID=?",newPassword,uuid)>0;
     }
 
     public static boolean changePassword(String name, String newPassword) {
-        return PublicDBHelper.exec("update user set password = HASH('SHA256', STRINGTOUTF8(concat(id,?)), 1000) where username=? or email=?",newPassword,name,name)>0;
+        return PublicDBHelper.exec("update user set password = PASSWORD(concat(id,?)) where username=? or email=?",newPassword,name,name)>0;
     }
 
     public static boolean userPasswordMatched(String name, String password) {
-        return PublicDBHelper.exist("select count(*) from user where (username=? or email=?) and password = HASH('SHA256', STRINGTOUTF8(concat(id,?)), 1000)", name, name, password);
+        return PublicDBHelper.exist("select count(*) from user where (username=? or email=?) and password = PASSWORD(concat(id,?))", name, name, password);
     }
 
     public static boolean userDisabled(String name) {
@@ -68,7 +68,7 @@ public class UserAuthDBHelper {
 
     public static void saveLoginKey(String key,Long userId,String username,String ip,Integer expired) {
         if (PublicDBHelper.exist("select count(*) from onlineUser where cookieKey=?",key)) return;
-        PublicDBHelper.exec("insert into onlineUser(cookieKey,userId,username,ip,expiredTime) values(?,?,?,?,dateadd(\"SECOND\",?,current_timestamp()))",key,userId,username,ip,expired);
+        PublicDBHelper.exec("insert into onlineUser(cookieKey,userId,username,ip,expiredTime) values(?,?,?,?,date_add(current_timestamp(),interval ? second))",key,userId,username,ip,expired);
     }
 
     public static User getUserByCookieKey(String cookieKey) {
@@ -112,7 +112,7 @@ public class UserAuthDBHelper {
     }
 
     public static boolean resetPassword(String uuid, String newPassword) {
-        return PublicDBHelper.exec("update user set password = HASH('SHA256', STRINGTOUTF8(concat(id,?)), 1000),resetUUID = null where resetUUID=?",newPassword,uuid)>0;
+        return PublicDBHelper.exec("update user set password = PASSWORD(concat(id,?)),resetUUID = null where resetUUID=?",newPassword,uuid)>0;
     }
 
     public static boolean emailHasRegistered(String resetEmail) {
@@ -122,9 +122,10 @@ public class UserAuthDBHelper {
     public static String updateResetUUID(String resetEmail) {
         UUID uuid = UUID.randomUUID();
 
-        PublicDBHelper.exec("update user set resetUUID=? where email=?",uuid,resetEmail);
+        String uuidStr = uuid.toString();
+        PublicDBHelper.exec("update user set resetUUID=? where email=?", uuidStr,resetEmail);
 
-        return uuid.toString();
+        return uuidStr;
     }
 
     public static String getAdminEmail() {

@@ -16,13 +16,13 @@ public class DBMonitor {
     public static final List<String> initialDDL = Arrays.asList(
             "CREATE TABLE TAG" +
                     "(" +
-                    "    ID bigint identity PRIMARY KEY NOT NULL," +
+                    "    ID bigint AUTO_INCREMENT PRIMARY KEY NOT NULL," +
                     "    NAME varchar(150)," +
                     "    type integer" +
                     ")",
             "CREATE TABLE WORKLOG" +
                     "(" +
-                    "    ID bigint identity PRIMARY KEY NOT NULL," +
+                    "    ID bigint AUTO_INCREMENT PRIMARY KEY NOT NULL," +
                     "    USERID bigint," +
                     "    DESCRIPTION varchar(150)," +
                     "    STARTTIME timestamp," +
@@ -35,31 +35,31 @@ public class DBMonitor {
                     ")",
             "CREATE TABLE USER" +
                     "(" +
-                    "    ID integer identity PRIMARY KEY NOT NULL," +
+                    "    ID integer AUTO_INCREMENT PRIMARY KEY NOT NULL," +
                     "    USERNAME varchar(50)," +
                     "    EMAIL varchar(100)," +
                     "    PASSWORD varchar(100)," +
-                    "    ACTIVATEUUID uuid," +
-                    "    RESETUUID uuid," +
+                    "    ACTIVATEUUID varchar(100)," +
+                    "    RESETUUID varchar(100)," +
                     "    CREATETIME timestamp," +
                     "    DISABLED boolean" +
                     ")",
             "CREATE TABLE USERRELATION" +
                     "(" +
-                    "    ID bigint identity PRIMARY KEY NOT NULL," +
+                    "    ID bigint AUTO_INCREMENT PRIMARY KEY NOT NULL," +
                     "    USERID bigint," +
                     "    SHARETOUSERID bigint" +
                     ")",
             "CREATE TABLE RANK" +
                     "(" +
-                    "    ID bigint identity PRIMARY KEY NOT NULL," +
+                    "    ID bigint AUTO_INCREMENT PRIMARY KEY NOT NULL," +
                     "    USERID bigint," +
                     "    REFERID bigint," +
                     "    CREATETIME timestamp" +
                     ")",
             "CREATE TABLE COMMENT" +
                     "(" +
-                    "    ID bigint identity PRIMARY KEY NOT NULL," +
+                    "    ID bigint AUTO_INCREMENT PRIMARY KEY NOT NULL," +
                     "    USERID bigint," +
                     "    DESCRIPTION varchar(150)," +
                     "    CREATETIME timestamp," +
@@ -67,7 +67,7 @@ public class DBMonitor {
                     ")",
             "CREATE TABLE USERINFO" +
                     "(" +
-                    "    ID bigint identity PRIMARY KEY NOT NULL," +
+                    "    ID bigint AUTO_INCREMENT PRIMARY KEY NOT NULL," +
                     "    DESCRIPTION varchar(200)," +
                     "    TELEPHONE varchar(100)," +
                     "    MOBILE varchar(100)," +
@@ -85,7 +85,7 @@ public class DBMonitor {
                     ")",
             "CREATE TABLE REFERTAGS" +
                     "(" +
-                    "    ID bigint identity PRIMARY KEY NOT NULL," +
+                    "    ID bigint AUTO_INCREMENT PRIMARY KEY NOT NULL," +
                     "    TAGID bigint," +
                     "    REFERID bigint," +
                     "    REFERTYPE integer" +

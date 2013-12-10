@@ -1,5 +1,6 @@
 package com.wiseach.teamlog.web.actions;
 
+import com.mysql.jdbc.StringUtils;
 import com.wiseach.teamlog.Constants;
 import com.wiseach.teamlog.db.CommonDBHelper;
 import com.wiseach.teamlog.db.WorkLogDBHelper;
@@ -9,7 +10,6 @@ import com.wiseach.teamlog.web.security.UserAuthProcessor;
 import net.sourceforge.stripes.action.Resolution;
 import net.sourceforge.stripes.action.UrlBinding;
 import net.sourceforge.stripes.util.StringUtil;
-import org.h2.util.StringUtils;
 import org.joda.time.DateTime;
 
 import java.util.*;
@@ -51,8 +51,10 @@ public class WorkLogDataServiceActionBean extends BaseActionBean {
             List<Long> userIdList = new ArrayList<Long>();
             for (int i = 0; i < persons.length; i++) {
                 String person = persons[i];
-                if (StringUtils.isNumber(person)) {
+                try {
                     userIdList.add(Long.parseLong(person));
+                } catch (NumberFormatException e) {
+                    e.printStackTrace();
                 }
             }
 
@@ -130,14 +132,15 @@ public class WorkLogDataServiceActionBean extends BaseActionBean {
         String tag,tagId;
         Long tId;
         List<Long> currentTagIds = new ArrayList<Long>();
-        boolean needCreateReferTag = false;
+        boolean needCreateReferTag;
         for (int i = 0; i < tagArray.length; i++) {
             tag = tagArray[i];
             tagId = tagIdArray[i];
-            if (StringUtils.isNumber(tagId)) {
+            try {
                 tId = Long.parseLong(tagId);
                 needCreateReferTag = CommonDBHelper.needCreateReferTag(tId, id, Constants.REFER_TYPE_WORKLOG);
-            } else {
+            } catch (NumberFormatException e) {
+                e.printStackTrace();
                 tId = CommonDBHelper.newTag(tag);
                 needCreateReferTag = true;
             }
