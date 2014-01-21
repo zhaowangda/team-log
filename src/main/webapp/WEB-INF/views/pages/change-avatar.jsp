@@ -81,7 +81,7 @@
                     fileInput:$('#avatarInput'),
                     done:function(e,d){
                         if (d!='') {
-                            var src = "${rootUri}/avatarTemp/"+ d.result+"?t="+new Date().getMilliseconds();
+                            var src = "${rootUri}/avatar/avatarTemp/"+ d.result+"?t="+new Date().getMilliseconds();
                             $('.avatar-result').empty().append($('<img id="jcrop-view">').attr('src',src));
                             initJcrop();
                             $('#preview').attr("src",src).show();

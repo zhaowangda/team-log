@@ -1,6 +1,7 @@
 package com.wiseach.teamlog.web.actions;
 
 import com.wiseach.teamlog.Constants;
+import com.wiseach.teamlog.utils.FileUtils;
 import com.wiseach.teamlog.utils.TeamlogLocalizationUtils;
 import com.wiseach.teamlog.web.resolutions.JsonResolution;
 import net.sourceforge.stripes.action.*;
@@ -59,7 +60,8 @@ public class BaseActionBean implements ActionBean {
     }
 
     protected String getRealPath() {
-        return getRealPath(Constants.ROOT_STRING);
+        return FileUtils.getFileServicePath();
+//        return getRealPath(Constants.ROOT_STRING);
     }
 
     public String getLastUrl() {

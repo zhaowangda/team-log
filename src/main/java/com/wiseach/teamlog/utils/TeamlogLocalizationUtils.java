@@ -4,9 +4,14 @@ import com.wiseach.teamlog.Constants;
 import com.wiseach.teamlog.web.extensions.TeamlogLocalizationBundleFactory;
 import net.sourceforge.stripes.controller.StripesFilter;
 
+import java.io.File;
+import java.net.MalformedURLException;
+import java.net.URL;
+import java.net.URLClassLoader;
 import java.text.MessageFormat;
 import java.util.Locale;
 import java.util.ResourceBundle;
+import java.util.logging.Logger;
 
 /**
  * User: Arlen Tan
@@ -29,11 +34,22 @@ public class TeamlogLocalizationUtils {
         if (paramsResourceBundle==null) {
             refreshParamBundle();
         }
-        return loadMessage(paramsResourceBundle,key,params);
+        return paramsResourceBundle!=null?loadMessage(paramsResourceBundle,key,params):"";
     }
 
     public static void refreshParamBundle() {
-        paramsResourceBundle = ResourceBundle.getBundle(PARAMS_NAME);
+        try {
+            URL url = new File(FileUtils.getFileServicePath() + File.separator).toURI().toURL();
+            System.err.println("url:"+url);
+            ClassLoader classLoader = new URLClassLoader(new URL[]{url});
+            paramsResourceBundle = ResourceBundle.getBundle(PARAMS_NAME,Locale.US,classLoader);
+            System.err.println("parameter file loaded!");
+        } catch (MalformedURLException e) {
+            e.printStackTrace();
+            paramsResourceBundle = null;
+        }
+
+//        paramsResourceBundle = ResourceBundle.getBundle(PARAMS_NAME);
     }
 
     private static String loadMessage(ResourceBundle bundle, String key, Object[] params) {

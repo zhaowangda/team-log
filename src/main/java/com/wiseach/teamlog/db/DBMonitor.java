@@ -14,81 +14,81 @@ import java.util.List;
  */
 public class DBMonitor {
     public static final List<String> initialDDL = Arrays.asList(
-            "CREATE TABLE TAG" +
+            "CREATE TABLE tag" +
                     "(" +
-                    "    ID bigint AUTO_INCREMENT PRIMARY KEY NOT NULL," +
-                    "    NAME varchar(150)," +
+                    "    id bigint AUTO_INCREMENT PRIMARY KEY NOT NULL," +
+                    "    name varchar(150)," +
                     "    type integer" +
                     ")",
-            "CREATE TABLE WORKLOG" +
+            "CREATE TABLE worklog" +
                     "(" +
-                    "    ID bigint AUTO_INCREMENT PRIMARY KEY NOT NULL," +
-                    "    USERID bigint," +
-                    "    DESCRIPTION varchar(150)," +
-                    "    STARTTIME timestamp," +
-                    "    ENDTIME timestamp," +
-                    "    TAGS varchar(150)," +
+                    "    id bigint AUTO_INCREMENT PRIMARY KEY NOT NULL," +
+                    "    userId bigint," +
+                    "    description varchar(150)," +
+                    "    startTime timestamp," +
+                    "    endTime timestamp," +
+                    "    tags varchar(150)," +
                     "    tagId bigint," +
-                    "    NICE integer," +
-                    "    COMMENTS integer," +
-                    "    CREATETIME timestamp" +
+                    "    nice integer," +
+                    "    comments integer," +
+                    "    createTime timestamp" +
                     ")",
-            "CREATE TABLE USER" +
+            "CREATE TABLE user" +
                     "(" +
-                    "    ID integer AUTO_INCREMENT PRIMARY KEY NOT NULL," +
-                    "    USERNAME varchar(50)," +
-                    "    EMAIL varchar(100)," +
-                    "    PASSWORD varchar(100)," +
-                    "    ACTIVATEUUID varchar(100)," +
-                    "    RESETUUID varchar(100)," +
-                    "    CREATETIME timestamp," +
-                    "    DISABLED boolean" +
+                    "    id integer AUTO_INCREMENT PRIMARY KEY NOT NULL," +
+                    "    username varchar(50)," +
+                    "    email varchar(100)," +
+                    "    password varchar(100)," +
+                    "    activateUUID varchar(100)," +
+                    "    resetUUID varchar(100)," +
+                    "    createTime timestamp," +
+                    "    disabled boolean" +
                     ")",
-            "CREATE TABLE USERRELATION" +
+            "CREATE TABLE userRelation" +
                     "(" +
-                    "    ID bigint AUTO_INCREMENT PRIMARY KEY NOT NULL," +
-                    "    USERID bigint," +
-                    "    SHARETOUSERID bigint" +
+                    "    id bigint AUTO_INCREMENT PRIMARY KEY NOT NULL," +
+                    "    userId bigint," +
+                    "    shareToUserId bigint" +
                     ")",
-            "CREATE TABLE RANK" +
+            "CREATE TABLE rank" +
                     "(" +
-                    "    ID bigint AUTO_INCREMENT PRIMARY KEY NOT NULL," +
-                    "    USERID bigint," +
-                    "    REFERID bigint," +
-                    "    CREATETIME timestamp" +
+                    "    id bigint AUTO_INCREMENT PRIMARY KEY NOT NULL," +
+                    "    userId bigint," +
+                    "    referId bigint," +
+                    "    createTime timestamp" +
                     ")",
-            "CREATE TABLE COMMENT" +
+            "CREATE TABLE comment" +
                     "(" +
-                    "    ID bigint AUTO_INCREMENT PRIMARY KEY NOT NULL," +
-                    "    USERID bigint," +
-                    "    DESCRIPTION varchar(150)," +
-                    "    CREATETIME timestamp," +
-                    "    REFERID bigint" +
+                    "    id bigint AUTO_INCREMENT PRIMARY KEY NOT NULL," +
+                    "    userId bigint," +
+                    "    description varchar(150)," +
+                    "    createTime timestamp," +
+                    "    referId bigint" +
                     ")",
-            "CREATE TABLE USERINFO" +
+            "CREATE TABLE userInfo" +
                     "(" +
-                    "    ID bigint AUTO_INCREMENT PRIMARY KEY NOT NULL," +
-                    "    DESCRIPTION varchar(200)," +
-                    "    TELEPHONE varchar(100)," +
-                    "    MOBILE varchar(100)," +
-                    "    QQ varchar(40)," +
-                    "    NOTE varchar(400)," +
-                    "    AVATAR varchar(200)" +
+                    "    id bigint AUTO_INCREMENT PRIMARY KEY NOT NULL," +
+                    "    description varchar(200)," +
+                    "    telephone varchar(100)," +
+                    "    mobile varchar(100)," +
+                    "    qq varchar(40)," +
+                    "    note varchar(400)," +
+                    "    avatar varchar(200)" +
                     ")",
-            "CREATE TABLE ONLINEUSER" +
+            "CREATE TABLE onlineUser" +
                     "(" +
-                    "    COOKIEKEY varchar(50) PRIMARY KEY NOT NULL," +
-                    "    USERID bigint," +
-                    "    USERNAME varchar(50)," +
-                    "    IP varchar(50)," +
-                    "    EXPIREDTIME timestamp" +
+                    "    cookieKey varchar(50) PRIMARY KEY NOT NULL," +
+                    "    userId bigint," +
+                    "    username varchar(50)," +
+                    "    ip varchar(50)," +
+                    "    expiredTime timestamp" +
                     ")",
-            "CREATE TABLE REFERTAGS" +
+            "CREATE TABLE referTags" +
                     "(" +
-                    "    ID bigint AUTO_INCREMENT PRIMARY KEY NOT NULL," +
-                    "    TAGID bigint," +
-                    "    REFERID bigint," +
-                    "    REFERTYPE integer" +
+                    "    id bigint AUTO_INCREMENT PRIMARY KEY NOT NULL," +
+                    "    tagId bigint," +
+                    "    referId bigint," +
+                    "    referType integer" +
                     ")");
     public static void initialDB() {
         List tables = PublicDBHelper.query("show tables ", new MapListHandler());

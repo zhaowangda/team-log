@@ -41,6 +41,7 @@ public class SecurityInterceptor implements Interceptor{
                 } else {
                     RedirectResolution redirectResolution = new RedirectResolution(LoginActionBean.class);
                     String lastUrl = actionBean.getLastUrl().replace(UserAuthProcessor.ROOT_URI, Constants.EMPTY_STRING);
+//                    return StringUtils.isNullOrEmpty(lastUrl)?redirectResolution:redirectResolution.addParameter(GOTO_URL, lastUrl);
                     return StringUtils.isNullOrEmpty(lastUrl)?redirectResolution:redirectResolution.addParameter(GOTO_URL, lastUrl);
                 }
             }

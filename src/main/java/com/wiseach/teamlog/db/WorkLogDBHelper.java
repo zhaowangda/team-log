@@ -12,13 +12,13 @@ import java.util.Map;
  */
 public class WorkLogDBHelper {
     public static List<Map<String, Object>> getShareToMe(Long userId) {
-        return PublicDBHelper.query("select u.id,u.username,(select ui.avatar from userinfo ui where ui.id = u.id) as avatar " +
+        return PublicDBHelper.query("select u.id,u.username,(select ui.avatar from userInfo ui where ui.id = u.id) as avatar " +
                 "from user u where u.id in (select userId from userRelation where shareToUserId=?) or u.id=?",
                 new MapListHandler(),userId,userId);
     }
 
     public static List<Map<String, Object>> getWorkLogData(Date start, Date end, Object[] people) {
-        return PublicDBHelper.queryWithInParam("select w.id,w.userId,(select avatar from userinfo where id=w.userId) as avatar,u.username,w.description,w.createTime,w.startTime,w.endTime,w.nice,w.comments,w.tags,w.tagId from worklog w inner join user u on (w.userId = u.id) where w.startTime>=? and w.endTime<=? and w.userId in (%in0) order by w.startTime"
+        return PublicDBHelper.queryWithInParam("select w.id,w.userId,(select avatar from userInfo where id=w.userId) as avatar,u.username,w.description,w.createTime,w.startTime,w.endTime,w.nice,w.comments,w.tags,w.tagId from worklog w inner join user u on (w.userId = u.id) where w.startTime>=? and w.endTime<=? and w.userId in (%in0) order by w.startTime"
                 , new MapListHandler(), start, end, people);
     }
 
@@ -61,10 +61,10 @@ public class WorkLogDBHelper {
     }
 
     public static List<Map<String, Object>> getSharedPeople(Long userId) {
-        return PublicDBHelper.query("select u.id,u.username,(select ui.avatar from userinfo ui where ui.id = u.id) as avatar, 1 as shared " +
+        return PublicDBHelper.query("select u.id,u.username,(select ui.avatar from userInfo ui where ui.id = u.id) as avatar, 1 as shared " +
                 "from user u where u.id in (select shareToUserId from userRelation where userId=?) " +
                 "union all " +
-                "select u.id,u.username,(select ui.avatar from userinfo ui where ui.id = u.id) as avatar, 0 " +
+                "select u.id,u.username,(select ui.avatar from userInfo ui where ui.id = u.id) as avatar, 0 " +
                 "from user u where u.id not in (select shareToUserId from userRelation where userId=?) and u.activateUUID is null",new MapListHandler(),userId,userId);
     }
 

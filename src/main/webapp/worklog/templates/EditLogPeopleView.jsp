@@ -14,7 +14,7 @@
 <div>
     <ul class="f-ul">
         <<_.each(people,function(p){ >>
-        <li><img src="<<=p.AVATAR>>" alt="photo" class="normal-avatar" title="<<=p.USERNAME>>"> <<=p.ellipsisName>><span class="pull-right label <<print(p.SHARED ? 'label-info' : 'hide');>>" style="cursor: pointer;" id="p<<=p.ID>>" title="<<print(p.SHARED ? '<fmt:message key="edit.log.people.shared"/>' : '<fmt:message key="edit.log.people.not.shared"/>');>>"><i class="icon-share icon-white"></i></span></li>
+        <li><img src="<<=p.avatar>>" alt="photo" class="normal-avatar" title="<<=p.username>>"> <<=p.ellipsisName>><span class="pull-right label <<print(p.shared ? 'label-info' : 'hide');>>" style="cursor: pointer;" id="p<<=p.id>>" title="<<print(p.shared ? '<fmt:message key="edit.log.people.shared"/>' : '<fmt:message key="edit.log.people.not.shared"/>');>>"><i class="icon-share icon-white"></i></span></li>
         << }); >>
     </ul>
 </div>

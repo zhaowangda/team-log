@@ -5,6 +5,7 @@ import com.jolbox.bonecp.BoneCPConfig;
 
 import java.sql.Connection;
 import java.sql.SQLException;
+import java.text.MessageFormat;
 
 /**
  * User: Arlen Tan
@@ -19,10 +20,19 @@ public class DBPool {
         try {
             Class.forName("com.mysql.jdbc.Driver");
             BoneCPConfig config = new BoneCPConfig();	// create a new configuration object
+            String mysqlNumber = System.getenv("MYSQL_SERVICE_NUMBER");
 
-            config.setJdbcUrl("jdbc:mysql://localhost:3306/teamlog?useUnicode=yes&characterEncoding=utf8");	// set the JDBC url
-            config.setUsername("teamlog_admin");			// set the username
-            config.setPassword("teamlog");				// set the password
+            String jdbcUrl = MessageFormat.format("jdbc:mysql://{0}:{1}/{2}?useUnicode=yes&characterEncoding=utf8",
+                    System.getenv("MOPAAS_MYSQL"+mysqlNumber+"_HOST"),
+                    System.getenv("MOPAAS_MYSQL"+mysqlNumber+"_PORT"),
+                    System.getenv("MOPAAS_MYSQL"+mysqlNumber+"_NAME"));
+            config.setJdbcUrl(jdbcUrl);	// set the JDBC url
+            config.setUsername(System.getenv("MOPAAS_MYSQL"+mysqlNumber+"_USER"));			// set the username
+            config.setPassword(System.getenv("MOPAAS_MYSQL"+mysqlNumber+"_PASSWORD"));				// set the password
+
+//            config.setJdbcUrl("jdbc:mysql://192.168.1.6:3306/teamlog?useUnicode=yes&characterEncoding=utf8");	// set the JDBC url
+//            config.setUsername("teamlog_admin");			// set the username
+//            config.setPassword("teamlog");				// set the password
 
             connectionPool = new BoneCP(config); 	// setup the connection pool
             DBMonitor.initialDB();

@@ -16,7 +16,7 @@
     <ul class="f-ul">
         <li><a href="#" id="a0"><img src="${rootUri}/res/imgs/all-user.png" alt="photo" class="normal-avatar"><fmt:message key="browse.log.people.item.all"/></a><input id="c0" type="checkbox"></li>
         <<_.each(people,function(p){ >>
-        <li><a href="#" id="a<<=p.ID>>"><img src="<<=p.AVATAR>>" alt="photo" class="normal-avatar" title="<<=p.USERNAME>>"> <<=p.ellipsisName>></a> <input id="c<<=p.ID>>" type="checkbox"></li>
+        <li><a href="#" id="a<<=p.id>>"><img src="<<=p.avatar>>" alt="photo" class="normal-avatar" title="<<=p.username>>"> <<=p.ellipsisName>></a> <input id="c<<=p.id>>" type="checkbox"></li>
         << }); >>
     </ul>
 </div>

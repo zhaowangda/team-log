@@ -53,7 +53,7 @@ window.BrowseLogHeaderView = Backbone.View.extend({
     },
 
     renderReports:function(){
-        var users= _.pluck(window.app.browseLogPeopleView.model.toJSON(),'USERNAME'),comments=new Array(),likes=new Array(),
+        var users= _.pluck(window.app.browseLogPeopleView.model.toJSON(),'username'),comments=new Array(),likes=new Array(),
             efforts=new Array();
         var workLogs = window.app.browseLogPeopleView.browseLogListView.model.toJSON();
 
@@ -66,10 +66,10 @@ window.BrowseLogHeaderView = Backbone.View.extend({
             return;
         }
 
-        var categoryData = _.groupBy(workLogs,'TAGS');
+        var categoryData = _.groupBy(workLogs,'tags');
         _.each(categoryData,function(d,idx){
             categoryData[idx] = _.reduce(d, function (c,log) {
-                return c+CommonUtils.substractDate(log.ENDTIME, log.STARTTIME);
+                return c+CommonUtils.substractDate(log.endTime, log.startTime);
             }, 0);
         });
 
@@ -82,10 +82,10 @@ window.BrowseLogHeaderView = Backbone.View.extend({
         _.each(workLogs,function(logs) {
             for (var i = 0; i < users.length; i++) {
                 var user = users[i];
-                if (logs.USERNAME == user) {
-                    comments[i] += logs.COMMENTS;
-                    likes[i] += logs.NICE;
-                    efforts[i] += CommonUtils.substractDate(logs.ENDTIME,logs.STARTTIME);
+                if (logs.username == user) {
+                    comments[i] += logs.comments;
+                    likes[i] += logs.nice;
+                    efforts[i] += CommonUtils.substractDate(logs.endTime,logs.startTime);
                     break;
                 }
             }
@@ -159,7 +159,7 @@ window.BrowseLogPeopleView = Backbone.View.extend({
         if (modelData && modelData.length>0) {
             _.each(modelData,function(p) {
                 teamlogUtils.avatarProcess(p);
-                p.ellipsisName=CommonUtils.ellipsisStr(p.USERNAME);
+                p.ellipsisName=CommonUtils.ellipsisStr(p.username);
             });
 
             $(this.el).empty().html(this.template({people:modelData})).addClass('h-scroll-bar');
@@ -287,7 +287,7 @@ window.BrowseLogListView = Backbone.View.extend({
         var currentDate,$ul,self=this;
         this.$el.empty();
         _.each(this.model.models,function(workLog){
-            var starTime = workLog.get('STARTTIME');
+            var starTime = workLog.get('startTime');
             if (!CommonUtils.equalDate(starTime,currentDate)) {
                 currentDate = starTime;
                 var d = Date.parse(currentDate);
@@ -360,11 +360,11 @@ window.BrowseLogItemView = Backbone.View.extend({
 
     render:function() {
         var m = this.model.toJSON();
-        if (!m.DESCRIPTION) m.DESCRIPTION=i18n.noDescription;
-        if (!m.TAGS) m.TAGS=i18n.noTag;
+        if (!m.description) m.description=i18n.noDescription;
+        if (!m.tags) m.tags=i18n.noTag;
         teamlogUtils.dateAndAvatarPrepare(m);
         this.$el.html(this.template(m));
-        var e = Date.parse(m.ENDTIME),s = Date.parse(m.STARTTIME),h=(e-s)/1000/3600;
+        var e = Date.parse(m.endTime),s = Date.parse(m.startTime),h=(e-s)/1000/3600;
 
         this.$el.find('.log-main-indicator-front').css({'width':(h*10+constants.PIXEL_UNIT),'margin-left':(s.getHours()*10+constants.PIXEL_UNIT)});
         this.$el.find('.log-main-indicator').attr('title', s.toString(i18n.timeFormat)+constants.MINUS_CHAR+ e.toString(i18n.timeFormat)+", "+h+i18n.hourStr);
@@ -433,9 +433,9 @@ window.BrowseLogPostCommentView = Backbone.View.extend({
             if (_.isNumber(data)) {
                 var subNode = $('<li>');
                 subNode.html($(new BrowseLogCommentView().template({
-                    USERID:teamlogUtils.getCurrentUserId(),
-                    AVATAR:self.model.avatar,DESCRIPTION:desc,
-                    CREATETIME:CommonUtils.formatDateWithTimezone(new Date()),USERNAME:self.model.username
+                    userId:teamlogUtils.getCurrentUserId(),
+                    avatar:self.model.avatar,description:desc,
+                    createTime:CommonUtils.formatDateWithTimezone(new Date()),username:self.model.username
                 }))).appendTo(self.$el.prev()).find(constants.PRETTY_TIME_CLASS).prettyDate();
                 $('#comments-'+self.model.dataId).html(self.$el.prev().children().length+' <i class="icon-comment"></i>');
                 done=true;
@@ -502,11 +502,9 @@ window.EditLogView = Backbone.View.extend({
         $.getJSON(window.rootUri+'/worklog-data/getTags/',function(data){
             if (_.isArray(data) && data.length>0) {
                 window.tags=data;
-                var $tags = $('#tags'),optionT= _.template('<option value="<<=ID>>"><<=NAME>></option>');
+                var $tags = $('#tags'),optionT= _.template('<option value="<<=id>>"><<=name>></option>');
                 $tags.empty();
                 $.each(data,function(i,d){
-                    d.ID;
-                    d.NAME;
                     $tags.append(optionT(d));
                 });
             } else {
@@ -535,7 +533,7 @@ window.EditLogView = Backbone.View.extend({
                     var isNew = self.currentEvent.id ==0,$worklogCalendar = $('#worklogCalendar');
                     self.currentEvent.id = rtn;
                     self.currentEvent.title = $('#description').val();
-                    self.currentEvent.DESCRIPTION = self.currentEvent.title;
+                    self.currentEvent.description = self.currentEvent.title;
                     self.currentEvent.tagId = this.$tags.find('option:selected').attr('value');
                     self.currentEvent.allDay = false;
                     self.closeEditor();
@@ -653,12 +651,12 @@ window.EditLogView = Backbone.View.extend({
                         var events=[];
                                             $.each(rtn,function(idx,v){
                         //                        v.allDay = !w.isSameDay($.fullCalendar.parseDate(v.start),$.fullCalendar.parseDate(v.end));
-                                                v.id = v.ID;
-                                                v.start = v.STARTTIME;
-                                                v.end = v.ENDTIME;
-                                                v.title = v.DESCRIPTION;
+                                                v.id = v.id;
+                                                v.start = v.startTime;
+                                                v.end = v.endTime;
+                                                v.title = v.description;
                                                 v.allDay = !CommonUtils.equalDate(v.start, v.end);
-                                                v.tagId = v.TAGID;
+                                                v.tagId = v.tagId;
                                                 events.push(v);
                                             });
                                             callback(events);
@@ -684,8 +682,8 @@ window.EditLogPeopleView = Backbone.View.extend({
             var peopleData=this.model.toJSON(),selfId = teamlogUtils.getCurrentUserId(),selfPos=0;
             $.each(peopleData,function(i,p) {
                 teamlogUtils.avatarProcess(p);
-                p.ellipsisName=CommonUtils.ellipsisStr(p.USERNAME);
-                if (p.ID == selfId) selfPos = i;
+                p.ellipsisName=CommonUtils.ellipsisStr(p.username);
+                if (p.id == selfId) selfPos = i;
             });
 
             if (selfPos>0) peopleData.splice(selfPos,1);

@@ -1,6 +1,6 @@
 window.Employee = Backbone.Model.extend({
     urlRoot:'',
-    idAttribute:'ID'
+    idAttribute:'id'
 });
 window.Worklog = Backbone.Model.extend({
     urlRoot:''

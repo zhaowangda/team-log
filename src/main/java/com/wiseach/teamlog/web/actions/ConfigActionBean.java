@@ -1,10 +1,7 @@
 package com.wiseach.teamlog.web.actions;
 
 import com.wiseach.teamlog.Constants;
-import com.wiseach.teamlog.utils.DateUtils;
-import com.wiseach.teamlog.utils.EmailSender;
-import com.wiseach.teamlog.utils.NetUtils;
-import com.wiseach.teamlog.utils.TeamlogLocalizationUtils;
+import com.wiseach.teamlog.utils.*;
 import com.wiseach.teamlog.web.WebUtils;
 import com.wiseach.teamlog.web.security.UserAuthProcessor;
 import net.sourceforge.stripes.action.*;
@@ -74,8 +71,9 @@ public class ConfigActionBean extends BaseActionBean {
         }
         Properties properties = new Properties();
         try {
-            String paramsFile = getContext().getServletContext().getRealPath("/")+"WEB-INF"+ File.separator+"classes"
-                    +File.separator+ TeamlogLocalizationUtils.PARAMS_NAME+".properties";
+            String paramsFile = FileUtils.getParamFileName();
+//            String paramsFile = getContext().getServletContext().getRealPath("/")+"WEB-INF"+ File.separator+"classes"
+//                    +File.separator+ TeamlogLocalizationUtils.PARAMS_NAME+".properties";
             FileInputStream fileInputStream = new FileInputStream(paramsFile);
             properties.load(fileInputStream);
             fileInputStream.close();

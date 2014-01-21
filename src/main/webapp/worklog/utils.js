@@ -98,7 +98,7 @@ window.CommonUtils ={
     },
     getTagId:function(label) {
         var rtn = _.find(window.tags,function(d){return d.label == label;});
-        return rtn?rtn.ID:'n';
+        return rtn?rtn.id:'n';
     },
     reLogin:function(rtnValue) {
         if (rtnValue == 'noLogin') {
@@ -108,7 +108,7 @@ window.CommonUtils ={
         }
     },
     ellipsisStr:function(str) {
-        if (str.length>6) {
+        if (str && str.length>6) {
             return str.substring(0,6)+"...";
         } else {
             return str;
@@ -126,12 +126,12 @@ window.CommonUtils ={
 
 window.teamlogUtils = {
     avatarProcess:function(obj) {
-        if (!obj.AVATAR || obj.AVATAR=='') {
-            obj.AVATAR = "/res/imgs/default-avatar.png";
+        if (!obj.avatar || obj.avatar=='') {
+            obj.avatar = "/res/imgs/default-avatar.png";
         } else {
-            obj.AVATAR = "/avatar/"+obj.AVATAR;
+            obj.avatar = "/avatar/avatar/"+obj.avatar;
         }
-        obj.AVATAR = window.rootUri+obj.AVATAR;
+        obj.avatar = window.rootUri+obj.avatar;
     },
 
     dateProcess:function(dateValue) {
@@ -140,7 +140,7 @@ window.teamlogUtils = {
 
     dateAndAvatarPrepare:function(obj) {
         this.avatarProcess(obj);
-        if (obj.CREATETIME) obj.CREATETIME = this.dateProcess(obj.CREATETIME);
+        if (obj.createTime) obj.createTime = this.dateProcess(obj.createTime);
     },
 
     getBrowseWorkLogUsers:function() {

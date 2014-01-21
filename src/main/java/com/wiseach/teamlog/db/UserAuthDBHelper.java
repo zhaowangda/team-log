@@ -27,11 +27,11 @@ public class UserAuthDBHelper {
         }
 
         String uuidStr;
-        uuidStr = PublicDBHelper.getStringData("select activateuuid from user where username=? and email=?",name,email);
+        uuidStr = PublicDBHelper.getStringData("select activateUUID from user where username=? and email=?",name,email);
         if (StringUtils.isNullOrEmpty(uuidStr)) {
             UUID uuid = UUID.randomUUID();
             uuidStr = uuid.toString();
-            PublicDBHelper.exec("insert into user(username,email,activateuuid,createTime,disabled) values (?,?,?,date_add(current_timestamp(),interval 2 day),false)",name,email, uuidStr);
+            PublicDBHelper.exec("insert into user(username,email,activateUUID,createTime,disabled) values (?,?,?,date_add(current_timestamp(),interval 2 day),false)",name,email, uuidStr);
             PublicDBHelper.exec("insert into userInfo(id) select id from user where username=?",name);
         }
 
