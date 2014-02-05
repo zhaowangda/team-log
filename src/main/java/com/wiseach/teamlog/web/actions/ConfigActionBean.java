@@ -10,8 +10,6 @@ import net.sourceforge.stripes.validation.Validate;
 import net.sourceforge.stripes.validation.ValidationErrors;
 import net.sourceforge.stripes.validation.ValidationMethod;
 
-import javax.servlet.http.HttpServletRequest;
-import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.net.*;
@@ -85,7 +83,7 @@ public class ConfigActionBean extends BaseActionBean {
             properties.setProperty("email.ssl.enabled", ssl);
             properties.setProperty("email.tls.enabled",tls);
             FileOutputStream fileOutputStream = new FileOutputStream(paramsFile);
-            properties.store(fileOutputStream,"update at "+ DateUtils.formatDate(new Date()));
+            properties.store(fileOutputStream,"update at "+ DateUtils.formatDateTime(new Date()));
             fileOutputStream.close();
             TeamlogLocalizationUtils.refreshParamBundle();
             //refresh current configuration.

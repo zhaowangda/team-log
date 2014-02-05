@@ -18,20 +18,27 @@ public class DBMonitor {
                     "(" +
                     "    id bigint AUTO_INCREMENT PRIMARY KEY NOT NULL," +
                     "    name varchar(150)," +
+                    "    color varchar(20) default '#eee'," +
                     "    type integer" +
+                    ")",
+            "CREATE TABLE userTag" +
+                    "(" +
+                    "    id bigint AUTO_INCREMENT PRIMARY KEY NOT NULL," +
+                    "    tagId bigint," +
+                    "    userId bigint" +
                     ")",
             "CREATE TABLE worklog" +
                     "(" +
                     "    id bigint AUTO_INCREMENT PRIMARY KEY NOT NULL," +
                     "    userId bigint," +
                     "    description varchar(150)," +
-                    "    startTime timestamp," +
-                    "    endTime timestamp," +
+                    "    startTime datetime," +
+                    "    endTime datetime," +
                     "    tags varchar(150)," +
                     "    tagId bigint," +
                     "    nice integer," +
                     "    comments integer," +
-                    "    createTime timestamp" +
+                    "    createTime datetime" +
                     ")",
             "CREATE TABLE user" +
                     "(" +
@@ -41,7 +48,7 @@ public class DBMonitor {
                     "    password varchar(100)," +
                     "    activateUUID varchar(100)," +
                     "    resetUUID varchar(100)," +
-                    "    createTime timestamp," +
+                    "    createTime datetime," +
                     "    disabled boolean" +
                     ")",
             "CREATE TABLE userRelation" +
@@ -55,14 +62,14 @@ public class DBMonitor {
                     "    id bigint AUTO_INCREMENT PRIMARY KEY NOT NULL," +
                     "    userId bigint," +
                     "    referId bigint," +
-                    "    createTime timestamp" +
+                    "    createTime datetime" +
                     ")",
             "CREATE TABLE comment" +
                     "(" +
                     "    id bigint AUTO_INCREMENT PRIMARY KEY NOT NULL," +
                     "    userId bigint," +
                     "    description varchar(150)," +
-                    "    createTime timestamp," +
+                    "    createTime datetime," +
                     "    referId bigint" +
                     ")",
             "CREATE TABLE userInfo" +
@@ -81,7 +88,7 @@ public class DBMonitor {
                     "    userId bigint," +
                     "    username varchar(50)," +
                     "    ip varchar(50)," +
-                    "    expiredTime timestamp" +
+                    "    expiredTime datetime" +
                     ")",
             "CREATE TABLE referTags" +
                     "(" +

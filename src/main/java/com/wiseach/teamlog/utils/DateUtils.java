@@ -13,7 +13,8 @@ import java.util.Date;
  * 12-8-15 上午11:34
  */
 public class DateUtils {
-    public static final DateTimeFormatter dtf = DateTimeFormat.forPattern(Constants.DATETIME_FORMAT);
+    public static final DateTimeFormatter datetimeFormatter = DateTimeFormat.forPattern(Constants.DATETIME_FORMAT);
+    public static final DateTimeFormatter dateFormatter = DateTimeFormat.forPattern(Constants.DATE_FORMAT);
 
     public static Long getDurationToMidNight() {
         DateTime end = new DateTime().plusDays(1);
@@ -22,10 +23,14 @@ public class DateUtils {
     }
 
     public static Date parseDate(String date) {
-        return DateTime.parse(date,dtf).toDate();
+        return DateTime.parse(date, datetimeFormatter).toDate();
+    }
+
+    public static String formatDateTime(Date date) {
+        return new DateTime(date).toString(datetimeFormatter);
     }
 
     public static String formatDate(Date date) {
-        return new DateTime(date).toString(dtf);
+        return new DateTime(date).toString(dateFormatter);
     }
 }

@@ -22,6 +22,7 @@ public class ViewHelper {
     public static final String CONFIG_PAGE = VIEW_PATH+"pages/config.jsp";
     public static final String INVITE_USER_PAGE = VIEW_PATH+"pages/invite-users.jsp";
     public static final String SETTING_PAGE = VIEW_PATH+"pages/setting.jsp";
+    public static final String TAG_SELECTION_PAGE = VIEW_PATH+"pages/tag-selection.jsp";
 
 
     public static final String STANDARD_ERROR_BOX_PAGE = VIEW_PATH+"public/results/errorBox.jsp";

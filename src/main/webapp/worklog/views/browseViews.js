@@ -183,6 +183,7 @@ window.BrowseLogPeopleView = Backbone.View.extend({
             this.updatePeopleStatus(this.condition.people);
         }
         this.worklogCollection.findData(this.condition.period,this.condition.people);
+        $('#exportReportBtn').attr('href',window.rootUri+'/worklog/export/'+ this.condition.period+"/"+ this.condition.people);
         $(constants.NUMBER_SIGN + 'work-log-container').empty().html(this.browseLogListView.el);
     },
 
@@ -300,6 +301,9 @@ window.BrowseLogListView = Backbone.View.extend({
         });
         if (this.model.models.length<1) {
            this.$el.append('<span class="label label-warning" style="font-size: 14px;padding: 10px 20px;">'+i18n.worklogDataEmpty+'</span>');
+            $('#exportReportBtn').addClass("disabled").attr("href","#viewLog");
+        } else {
+            $('#exportReportBtn').removeClass("disabled");
         }
         $(constants.PRETTY_TIME_CLASS,this.el).prettyDate({attribute:"value"});
         app.viewLogView.refreshReports();
@@ -553,8 +557,7 @@ window.EditLogView = Backbone.View.extend({
     updateWorklog:function(w) {
         if (!w) w={tagId:0};
         $.each(['id','description'],function(i,d) {
-            var di = d.toUpperCase();
-            $('#'+d).val(w[di]?w[di]:'');
+            $('#'+d).val(w[d]?w[d]:'');
         });
 
         $('#tags').val(w.tagId);
@@ -649,17 +652,17 @@ window.EditLogView = Backbone.View.extend({
                 $.get(window.rootUri+'/worklog-data/showWorkLogData',{period:Date.parse(start).toString(constants.DATE_FORMAT) + ","+Date.parse(end).toString(constants.DATE_FORMAT),people:teamlogUtils.getCurrentUserId()},function(rtn){
                     if (_.isArray(rtn)) {
                         var events=[];
-                                            $.each(rtn,function(idx,v){
-                        //                        v.allDay = !w.isSameDay($.fullCalendar.parseDate(v.start),$.fullCalendar.parseDate(v.end));
-                                                v.id = v.id;
-                                                v.start = v.startTime;
-                                                v.end = v.endTime;
-                                                v.title = v.description;
-                                                v.allDay = !CommonUtils.equalDate(v.start, v.end);
-                                                v.tagId = v.tagId;
-                                                events.push(v);
-                                            });
-                                            callback(events);
+                        $.each(rtn,function(idx,v){
+//                            v.allDay = !w.isSameDay($.fullCalendar.parseDate(v.start),$.fullCalendar.parseDate(v.end));
+//                            v.id = v.id;
+                            v.start = v.startTime;
+                            v.end = v.endTime;
+                            v.title = v.description;
+                            v.allDay = !CommonUtils.equalDate(v.start, v.end);
+//                            v.tagId = v.tagId;
+                            events.push(v);
+                        });
+                        callback(events);
                     } else {
                         CommonUtils.reLogin(rtn);
                     }

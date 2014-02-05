@@ -37,22 +37,22 @@ public class AvatarActionBean extends BaseActionBean{
 //        return getErrorJsonResolution(getRealPath()+File.separator+picName);
     }
 
-    public Resolution fileList() {
-        File file = new File(getRealPath()+File.separator+FileUtils.TEMP_AVATAR_FOLDER);
-        List<String> files = new ArrayList<String>();
-        for (String f : file.list()) {
-            files.add(f);
-        }
-        files.add("-------------------");
-
-        file = new File(getRealPath() + File.separator + FileUtils.AVATAR_FOLDER);
-        for (String f : file.list()) {
-            files.add(f);
-        }
-        fileList = files.toArray(new String[files.size()]);
-
-        return new ForwardResolution("/WEB-INF/views/pages/fileList.jsp");
-    }
+//    public Resolution fileList() {
+//        File file = new File(getRealPath()+File.separator+FileUtils.TEMP_AVATAR_FOLDER);
+//        List<String> files = new ArrayList<String>();
+//        for (String f : file.list()) {
+//            files.add(f);
+//        }
+//        files.add("-------------------");
+//
+//        file = new File(getRealPath() + File.separator + FileUtils.AVATAR_FOLDER);
+//        for (String f : file.list()) {
+//            files.add(f);
+//        }
+//        fileList = files.toArray(new String[files.size()]);
+//
+//        return new ForwardResolution("/WEB-INF/views/pages/fileList.jsp");
+//    }
 
     private String picName;
     private String[] fileList;

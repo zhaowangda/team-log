@@ -15,7 +15,7 @@
 <div class="wrapper">
     <div class="header content clearfix">
         <a href="${rootUri}/"><img src="${rootUri}/res/imgs/teamlog-logo.png" class="logo-img" alt="teamlog logo image"></a>
-        <div class="msg-box"><span>asdf</span><a href="#" class="close"><fmt:message key="button.close.label"/></a></div>
+        <div class="msg-box"><span></span><a href="#" class="close"><fmt:message key="button.close.label"/></a></div>
         <div class="header-content"><%@include file="/WEB-INF/views/include/setting.jsp"%></div>
     </div>
     <div class="f-header-padding"></div>

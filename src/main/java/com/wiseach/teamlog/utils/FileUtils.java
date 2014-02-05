@@ -19,9 +19,10 @@ public class FileUtils {
     public static final String TEMP_AVATAR_FOLDER = "avatarTemp";
     public static final String AVATAR_FOLDER = "avatar";
     public static final String DEFAULT_AVATAR = UserAuthProcessor.ROOT_URI+"/res/imgs/default-avatar.png";
-    public static final String FILE_SERVICE_NUMBER = System.getenv("FILE_SERVICE_NUMBER");
-
-    public static final String FILE_SERVICE_PATH = System.getenv("MOPAAS_FILESYSTEM"+FILE_SERVICE_NUMBER+"_LOCAL_PATH") + File.separator + System.getenv("MOPAAS_FILESYSTEM"+FILE_SERVICE_NUMBER+"_NAME");
+//    public static final String FILE_SERVICE_NUMBER = System.getenv("FILE_SERVICE_NUMBER");
+//
+//    public static final String FILE_SERVICE_PATH = System.getenv("MOPAAS_FILESYSTEM"+FILE_SERVICE_NUMBER+"_LOCAL_PATH") + File.separator + System.getenv("MOPAAS_FILESYSTEM"+FILE_SERVICE_NUMBER+"_NAME");
+    public static final String FILE_SERVICE_PATH = System.getProperty("filePath");
 
     public static void saveBigAvatar(FileBean avatar, String realPath, String filename) {
         try {
@@ -80,12 +81,10 @@ public class FileUtils {
         File bigAvatarPath = new File(getFileServicePath()+File.separator+ TEMP_AVATAR_FOLDER);
         if (!bigAvatarPath.exists()) {
             bigAvatarPath.mkdirs();
-            System.out.println("big folder created.");
         }
         File thumbnailAvatarPath = new File(getFileServicePath()+File.separator+ AVATAR_FOLDER);
         if (!thumbnailAvatarPath.exists()) {
             thumbnailAvatarPath.mkdirs();
-            System.out.println("thumbnail folder created.");
         }
     }
 

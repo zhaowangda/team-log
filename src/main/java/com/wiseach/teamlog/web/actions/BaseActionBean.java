@@ -4,6 +4,7 @@ import com.wiseach.teamlog.Constants;
 import com.wiseach.teamlog.utils.FileUtils;
 import com.wiseach.teamlog.utils.TeamlogLocalizationUtils;
 import com.wiseach.teamlog.web.resolutions.JsonResolution;
+import com.wiseach.teamlog.web.security.UserAuthProcessor;
 import net.sourceforge.stripes.action.*;
 import net.sourceforge.stripes.validation.LocalizableError;
 import net.sourceforge.stripes.validation.SimpleError;
@@ -39,6 +40,21 @@ public class BaseActionBean implements ActionBean {
         return ViewHelper.getHomePageResolution();
     }
 
+    @DontValidate
+    public Resolution notFound() {
+        return new ErrorResolution(404);
+    }
+
+    @DontValidate
+    public Resolution Error() {
+        return new ErrorResolution(500);
+    }
+
+    @DontValidate
+    public Resolution badRequest() {
+        return new ErrorResolution(400);
+    }
+
     protected String getMessage(String key,Object... params) {
         return TeamlogLocalizationUtils.getResourceMessage(key, context.getLocale(), params);
     }
@@ -62,6 +78,14 @@ public class BaseActionBean implements ActionBean {
     protected String getRealPath() {
         return FileUtils.getFileServicePath();
 //        return getRealPath(Constants.ROOT_STRING);
+    }
+
+    protected Long getUserId() {
+        return UserAuthProcessor.getUserId(getContext());
+    }
+
+    protected boolean isPost() {
+        return getContext().getRequest().getMethod().equals("POST");
     }
 
     public String getLastUrl() {

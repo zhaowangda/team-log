@@ -5,6 +5,7 @@ import com.wiseach.teamlog.Constants;
 import com.wiseach.teamlog.db.CommonDBHelper;
 import com.wiseach.teamlog.db.WorkLogDBHelper;
 import com.wiseach.teamlog.utils.DateUtils;
+import com.wiseach.teamlog.utils.TeamlogUtils;
 import com.wiseach.teamlog.web.resolutions.JsonResolution;
 import com.wiseach.teamlog.web.security.UserAuthProcessor;
 import net.sourceforge.stripes.action.Resolution;
@@ -23,8 +24,6 @@ public class WorkLogDataServiceActionBean extends BaseActionBean {
 
     public static final String ERROR_MESSAGE_COMMENT_REFERID_VALUE_NOT_PRESENT = "error.message.comment.referid.valueNotPresent";
     public static final String ERROR_MESSAGE_COMMENT_REFERID_AND_COMMENT_VALUE_NOT_PRESENT = "error.message.comment.referid.and.comment.valueNotPresent";
-    public static final String ERROR_MESSAGE_PEOPLE_VALUE_NOT_PRESENT = "error.message.people.valueNotPresent";
-    public static final String ERROR_MESSAGE_PERIOD_VALUE_NOT_PRESENT = "error.message.period.valueNotPresent";
     public static final String ERROR_MESSAGE_ID_VALUE_NOT_PRESENT = "error.message.id.valueNotPresent";
 
     public Resolution shareToMe() {
@@ -32,35 +31,15 @@ public class WorkLogDataServiceActionBean extends BaseActionBean {
     }
 
     public Resolution showWorkLogData() {
-        String message = null;
-        if (StringUtils.isNullOrEmpty(period)) {
-            message = getMessage(ERROR_MESSAGE_PERIOD_VALUE_NOT_PRESENT);
-        }
-        if (StringUtils.isNullOrEmpty(people)) {
-            message = getMessage(ERROR_MESSAGE_PEOPLE_VALUE_NOT_PRESENT);
-        }
+        String message = TeamlogUtils.checkWorklogConditions(period,people);
 
         if (StringUtils.isNullOrEmpty(message)) {
-            String[] datePeriod = StringUtil.standardSplit(period),persons = StringUtil.standardSplit(people);
-            DateTime start,end;
-            start = DateTime.parse(datePeriod[0]);
-            end = DateTime.parse(datePeriod[1]);
+            Map<String, DateTime> datePeriod = TeamlogUtils.getSplitDate(period);
+            List<Long> userIdList = TeamlogUtils.getSplitId(people);
 
-            end = end.plusDays(1);
-
-            List<Long> userIdList = new ArrayList<Long>();
-            for (int i = 0; i < persons.length; i++) {
-                String person = persons[i];
-                try {
-                    userIdList.add(Long.parseLong(person));
-                } catch (NumberFormatException e) {
-                    e.printStackTrace();
-                }
-            }
-
-            return new JsonResolution<List<Map<String, Object>>>(WorkLogDBHelper.getWorkLogData(start.toDate(),end.toDate(),userIdList.toArray()));
+            return new JsonResolution<List<Map<String, Object>>>(WorkLogDBHelper.getWorkLogData(datePeriod.get("start").toDate(),datePeriod.get("end").toDate(),userIdList.toArray()));
         } else {
-            return new JsonResolution<String>(message);
+            return new JsonResolution<String>(getMessage(message));
         }
     }
 
@@ -165,7 +144,7 @@ public class WorkLogDataServiceActionBean extends BaseActionBean {
     }
 
     public Resolution getTags() {
-        List<Map<String, Object>> tags = CommonDBHelper.getTags();
+        List<Map<String, Object>> tags = CommonDBHelper.getUserTags(getUserId());
         if (tags!=null && tags.size()>0) {
             return new JsonResolution<List<Map<String, Object>>>(tags);
         } else {

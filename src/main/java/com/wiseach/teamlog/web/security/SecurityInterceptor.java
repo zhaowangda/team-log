@@ -21,8 +21,8 @@ import java.util.List;
 @Intercepts(LifecycleStage.ActionBeanResolution)
 public class SecurityInterceptor implements Interceptor{
     private static final List<Class<? extends BaseActionBean>> ALLOW = Arrays.asList(WorkLogActionBean.class, ProfileActionBean.class,
-            ChangePasswordActionBean.class,ChangeAvatarActionBean.class,
-            InviteUserActionBean.class,WorkLogDataServiceActionBean.class);
+            ChangePasswordActionBean.class,ChangeAvatarActionBean.class,TagSelectionActionBean.class,
+            InviteUserActionBean.class,WorkLogDataServiceActionBean.class,ExportExcelActionBean.class);
     private static final String GOTO_URL = "gotoUrl";
     private static final String NO_LOGIN = "noLogin";
 

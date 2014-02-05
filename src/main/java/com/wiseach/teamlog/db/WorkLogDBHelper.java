@@ -22,6 +22,11 @@ public class WorkLogDBHelper {
                 , new MapListHandler(), start, end, people);
     }
 
+    public static List<Map<String, Object>> getWorkLogExportData(Date start, Date end, Object[] people) {
+        return PublicDBHelper.queryWithInParam("select DATE(startTime) as workDate,TIME(startTime) as stTime,TIME(endTime) as edTime,round(TIMESTAMPDIFF(MINUTE,startTime,endTime)/60,2) as hours,description,(select username from `user` where id=userId) as staff,(select `name` from tag where id=tagId) as tag,nice,comments from worklog where startTime>=? and endTime<=? and userId in (%in0) order by startTime"
+                , new MapListHandler(), start, end, people);
+    }
+
     public static List<Map<String, Object>> getCommentData(Long referId) {
         return PublicDBHelper.query("select id,userid,description,createTime,(select username from user where id = userid) as userName,(select avatar from userInfo where id = userId) as avatar from comment where referId = ?",new MapListHandler(),referId);
     }
@@ -58,6 +63,10 @@ public class WorkLogDBHelper {
         } else {
             return 0l;
         }
+    }
+
+    public static List<Long> getSharedWithMe(Long userId) {
+        return PublicDBHelper.query("select userId from userRelation where shareToUserId=? union select ?",new LongArrayResultSetHandler(),userId,userId);
     }
 
     public static List<Map<String, Object>> getSharedPeople(Long userId) {

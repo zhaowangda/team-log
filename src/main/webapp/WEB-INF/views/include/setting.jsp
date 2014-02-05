@@ -31,6 +31,9 @@
                     <li>
                         <a href="${rootUri}/profile"><fmt:message key="setting.menu.change.profile"/></a>
                     </li>
+                    <li>
+                        <a href="${rootUri}/work-type-selection"><fmt:message key="setting.menu.select.work-type"/></a>
+                    </li>
                 </c:if>
                 <li class="divider"></li>
                 <li>

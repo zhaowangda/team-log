@@ -2,6 +2,7 @@
 
 <div class="page-header clearfix" style="margin: 0px;padding: 0;">
     <button id="showReportBtn" type="button" class="btn" data-toggle="button"><fmt:message key="browse.log.show.reports"/> </button>
+    <a id="exportReportBtn" type="button" class="btn" href="#"><fmt:message key="browse.log.show.reports.export"/> </a>
     <div id="reportrange" class="pull-right well" style="padding: 9px;cursor: pointer;">
         <i class="icon-calendar icon-large"></i>
         <jsp:useBean id="now" class="java.util.Date" scope="page" />

@@ -41,7 +41,7 @@ public class ChangeAvatarActionBean extends BaseActionBean {
         String[] dim = StringUtil.standardSplit(dimension);
 
         try {
-            Integer x=Integer.valueOf(dim[0]),y=Integer.valueOf(dim[1]),width = Integer.valueOf(dim[2]);
+            Integer x=Double.valueOf(dim[0]).intValue(),y=Double.valueOf(dim[1]).intValue(),width = Double.valueOf(dim[2]).intValue();
             FileUtils.saveAvatar(getRealPath(),x,y,width,UserAuthDBHelper.getUserAvatar(UserAuthProcessor.getUserId(getContext())));
         } catch (Exception e) {
             addLocalizableError("dimension", "dimension.params.error");
