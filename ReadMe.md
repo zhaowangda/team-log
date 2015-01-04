@@ -4,17 +4,17 @@
 #快速记录、操作简单
 在日历上拖动时间段，填写工作内容和类别，没有更多动作和输入，工作日志记录不再是负担。
 
-![团队日志-快速记录](http://www.wiseach.com/assets/images/products/teamlog-main.jpg)
+![团队日志-快速记录](http://www.wiseach.com/wp-content/uploads/2014/12/teamlog-main.jpg)
 
 #轻松浏览、数据分析
 可以轻松的查看报告给自己的工作日志，以直观图表展现工时统计，有无异常、一清二楚。
 
-![团队日志-数据分析](http://www.wiseach.com/assets/images/products/teamlog-report.jpg)
+![团队日志-数据分析](http://www.wiseach.com/wp-content/uploads/2014/12/teamlog-report.jpg)
 
 #方便反馈、有一说一
 查看报告的工作日志，可以回复意见或一句鼓励，沟通无间，展示领导魅力。
 
-![团队日志-方便反馈](http://www.wiseach.com/assets/images/products/teamlog-comment.jpg)
+![团队日志-方便反馈](http://www.wiseach.com/wp-content/uploads/2014/12/teamlog-comment.jpg)
 
 #Licence
 
