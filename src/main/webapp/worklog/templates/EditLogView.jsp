@@ -12,6 +12,10 @@
                 <input id="id" name="id" type="hidden">
                 <label for="description"><fmt:message key="edit.log.form.description"/></label>
                 <textarea id="description" style="width: 354px;" rows="5" name="description" class="focused"></textarea>
+
+                <label for="completion"><fmt:message key="edit.log.form.completion"/></label>
+                <input id="completion" name="completion" >
+
                 <label for="tags"><fmt:message key="edit.log.form.tags"/></label>
                 <select id="tags" name="tag"></select>
                 <div style="margin-top: 10px;">

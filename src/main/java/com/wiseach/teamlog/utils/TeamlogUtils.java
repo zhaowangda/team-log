@@ -4,6 +4,8 @@ import com.mysql.jdbc.StringUtils;
 import net.sourceforge.stripes.util.StringUtil;
 import org.joda.time.DateTime;
 
+import javax.mail.internet.AddressException;
+import javax.mail.internet.InternetAddress;
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -32,6 +34,24 @@ public class TeamlogUtils {
         }
         return idList;
     }
+    public static List<InternetAddress> getSplitEmail(String idListStr) {
+        String[] ids = StringUtil.standardSplit(idListStr);
+        List<InternetAddress> idList = new ArrayList<InternetAddress>();
+        for (int i = 0; i < ids.length; i++) {
+            String Email = ids[i];
+            try {
+                InternetAddress IA=new InternetAddress(Email);
+                idList.add(IA);
+            } catch (NumberFormatException e) {
+                e.printStackTrace();
+            } catch (AddressException e) {
+                e.printStackTrace();
+            }
+
+        }
+        return idList;
+    }
+
 
     public static Map<String, DateTime> getSplitDate(String dateListStr) {
         String[] dates = StringUtil.standardSplit(dateListStr);

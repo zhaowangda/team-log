@@ -18,15 +18,18 @@ public class WorkLogDBHelper {
     }
 
     public static List<Map<String, Object>> getWorkLogData(Date start, Date end, Object[] people) {
-        return PublicDBHelper.queryWithInParam("select w.id,w.userId,(select avatar from userInfo where id=w.userId) as avatar,u.username,w.description,w.createTime,w.startTime,w.endTime,w.nice,w.comments,w.tags,w.tagId from worklog w inner join user u on (w.userId = u.id) where w.startTime>=? and w.endTime<=? and w.userId in (%in0) order by w.startTime"
+        return PublicDBHelper.queryWithInParam("select w.id,w.userId,(select avatar from userInfo where id=w.userId) as avatar,u.username,w.description,w.createTime,w.startTime,w.completion,w.endTime, TIMESTAMPDIFF(HOUR,w.startTime,w.endTime) as worktime,w.nice,w.comments,w.tags,w.tagId from worklog w inner join user u on (w.userId = u.id) where w.startTime>=? and w.endTime<=? and w.userId in (%in0) order by w.startTime DESC"
                 , new MapListHandler(), start, end, people);
     }
 
     public static List<Map<String, Object>> getWorkLogExportData(Date start, Date end, Object[] people) {
-        return PublicDBHelper.queryWithInParam("select DATE(startTime) as workDate,TIME(startTime) as stTime,TIME(endTime) as edTime,round(TIMESTAMPDIFF(MINUTE,startTime,endTime)/60,2) as hours,description,(select username from `user` where id=userId) as staff,(select `name` from tag where id=tagId) as tag,nice,comments from worklog where startTime>=? and endTime<=? and userId in (%in0) order by startTime"
+        return PublicDBHelper.queryWithInParam("select DATE(startTime) as workDate,TIME(startTime) as stTime,TIME(endTime) as edTime,round(TIMESTAMPDIFF(MINUTE,startTime,endTime)/60,2) as hours,description,(select username from `user` where id=userId) as staff,completion,(select `name` from tag where id=tagId) as tag,nice,comments from worklog where startTime>=? and endTime<=? and userId in (%in0) order by startTime"
                 , new MapListHandler(), start, end, people);
     }
-
+    public static List<Map<String, Object>> getWorkLogEmailData(Date start, Date end) {
+        return PublicDBHelper.queryWithInParam("select DATE_FORMAT(startTime,'%Y-%m-%d') as Time, TIMESTAMPDIFF(HOUR,startTime,endTime) as hours,description,(select username from `user` where id=userId) as staff,completion,(select `name` from tag where id=tagId) as tag,nice,comments from worklog where startTime>=? and endTime<=?   order by staff,Time"
+                , new MapListHandler(), start, end);
+    }
     public static List<Map<String, Object>> getCommentData(Long referId) {
         return PublicDBHelper.query("select id,userid,description,createTime,(select username from user where id = userid) as userName,(select avatar from userInfo where id = userId) as avatar from comment where referId = ?",new MapListHandler(),referId);
     }
@@ -51,14 +54,14 @@ public class WorkLogDBHelper {
         return PublicDBHelper.exec("delete from worklog where id=?", id)>0;
     }
 
-    public static Long newWorklog(String desc,String tags,Long tagId,Date start,Date end, Long userId) {
-        return PublicDBHelper.insert("insert into worklog(description,startTime,endTime,tags,tagId,userId,nice,comments,createTime) " +
-                "values(?,?,?,?,?,?,0,0,current_timestamp())",
-                desc,start,end,tags,tagId,userId);
+    public static Long newWorklog(String desc,String tags,Long tagId,Date start,Date end, Long userId,Long completion) {
+        return PublicDBHelper.insert("insert into worklog(description,startTime,endTime,tags,tagId,userId,nice,comments,createTime,completion) " +
+                "values(?,?,?,?,?,?,0,0,current_timestamp(),?)",
+                desc,start,end,tags,tagId,userId,completion);
     }
 
-    public static Long updateContent(String desc,String tags,Long tagId,Long id) {
-        if (PublicDBHelper.exec("update worklog set description=?,tags=?,tagId=? where id=?",desc,tags,tagId,id)>0) {
+    public static Long updateContent(String desc,String tags,Long tagId,Long id,Long completion) {
+        if (PublicDBHelper.exec("update worklog set description=?,tags=?,tagId=? ,completion=? where id=?",desc,tags,tagId,completion,id)>0) {
             return id;
         } else {
             return 0l;

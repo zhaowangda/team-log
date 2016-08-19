@@ -1,5 +1,6 @@
 package com.wiseach.teamlog.model;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 /**
@@ -8,15 +9,22 @@ import java.util.Date;
  */
 public class WorkLog {
     private Long id;
-    private String description,tags;
+    private String description,tags,completion;
     private Date startTime,endTime;
-
+    private Long WorkTime;
     public Long getId() {
         return id;
     }
 
     public void setId(Long id) {
         this.id = id;
+    }
+    public String getCompletion() {
+        return completion;
+    }
+
+    public void setCompletion(Long id) {
+        this.completion = completion;
     }
 
     public String getDescription() {
@@ -50,4 +58,5 @@ public class WorkLog {
     public void setEndTime(Date endTime) {
         this.endTime = endTime;
     }
+
 }

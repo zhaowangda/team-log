@@ -365,6 +365,7 @@ window.BrowseLogItemView = Backbone.View.extend({
     render:function() {
         var m = this.model.toJSON();
         if (!m.description) m.description=i18n.noDescription;
+        if (!m.completion) m.completion=i18n.nocompletion;
         if (!m.tags) m.tags=i18n.noTag;
         teamlogUtils.dateAndAvatarPrepare(m);
         this.$el.html(this.template(m));
@@ -528,6 +529,7 @@ window.EditLogView = Backbone.View.extend({
                     {name:'end',value:self.formatDate(self.currentEvent.end)},
                     {name:'tagStr',value:$option.text()},
                     {name:'tagId',value:$option.attr('value')},
+                    {name:'completion',value:self.currentEvent.completion},
                     {name:'id',value:self.currentEvent.id}
                 );
             },
@@ -538,6 +540,7 @@ window.EditLogView = Backbone.View.extend({
                     self.currentEvent.id = rtn;
                     self.currentEvent.title = $('#description').val();
                     self.currentEvent.description = self.currentEvent.title;
+                    self.currentEvent.completion = self.currentEvent.completion;
                     self.currentEvent.tagId = this.$tags.find('option:selected').attr('value');
                     self.currentEvent.allDay = false;
                     self.closeEditor();
@@ -556,7 +559,7 @@ window.EditLogView = Backbone.View.extend({
 
     updateWorklog:function(w) {
         if (!w) w={tagId:0};
-        $.each(['id','description'],function(i,d) {
+        $.each(['id','description','completion'],function(i,d) {
             $('#'+d).val(w[d]?w[d]:'');
         });
 

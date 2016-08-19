@@ -5,6 +5,8 @@
         <div class="log-main-indicator-back"><div class="log-main-indicator-front"></div></div>
     </div>
     <div class="log-main-content"><<=description>></div>
+    <div class="log-main-content">WorkTime: <<=worktime>>h</div>
+    <div class="log-main-content">Completion: <<=completion>>%</div>
     <div>
         <<_.each(tags.split(','),function(tag){>>
         <span class="badge"><i class="icon-tag icon-white"></i><<=tag>></span>

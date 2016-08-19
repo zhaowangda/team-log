@@ -1,6 +1,8 @@
 package com.wiseach.teamlog.web.actions;
 
 import com.wiseach.teamlog.db.UserAuthDBHelper;
+import com.wiseach.teamlog.utils.EmailSender;
+import com.wiseach.teamlog.web.WebUtils;
 import net.sourceforge.stripes.action.*;
 import net.sourceforge.stripes.validation.LocalizableError;
 import net.sourceforge.stripes.validation.Validate;
@@ -23,6 +25,10 @@ public class SendRestPasswordEmailActionBean extends BaseActionBean {
     public Resolution send() {
         String uuidStr = UserAuthDBHelper.updateResetUUID(resetEmail);
 
+        String activateUrl = WebUtils.RESET_URL+uuidStr;
+        EmailSender.send(resetEmail,resetEmail,getMessage("email.activate.reset.user.subject"),getMessage("email.activate.reset.user",resetEmail,activateUrl,activateUrl));
+
+        //System.out.println("activateUrl is:"+activateUrl);
         setRequestAttribute(SUCCESSFUL_TTILE_KEY, "send.title");
         setRequestAttribute(SUCCESSFUL_DESCRIPTION_KEY,"send.description");
         setRequestAttribute(SUCCESSFUL_INFO_KEY,getMessage("send.info",getMessage("successful.box.go.login")));

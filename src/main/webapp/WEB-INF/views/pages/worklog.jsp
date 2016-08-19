@@ -81,6 +81,7 @@
             worklogDataEmpty:'<fmt:message key="data.worklog.empty"/>',
             backToTop:'<fmt:message key="button.go.top.label"/>',
             noDescription:'<fmt:message key="edit.log.form.description.none"/>',
+            nocompletion:'<fmt:message key="edit.log.form.completion.none"/>',
             noTag:'<fmt:message key="edit.log.form.tags.none"/>',
             sharePerson:'<fmt:message key="edit.log.people.shared"/>',
             notSharePerson:'<fmt:message key="edit.log.people.not.shared"/>'

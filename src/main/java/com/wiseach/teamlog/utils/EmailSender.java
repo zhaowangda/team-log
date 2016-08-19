@@ -5,6 +5,10 @@ import net.sourceforge.stripes.util.Log;
 import org.apache.commons.mail.EmailException;
 import org.apache.commons.mail.HtmlEmail;
 
+import javax.mail.internet.InternetAddress;
+import java.util.Collection;
+import java.util.List;
+
 /**
  * User: Arlen Tan
  * 12-8-10 下午4:21
@@ -28,7 +32,17 @@ public class EmailSender {
         }).run();
         return true;
     }
+    public static boolean send(final List<InternetAddress> to,  final String subject, final String content){
+        if (HOST_NAME==null || HOST_NAME.equals("")) return false;
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                doEmailSend(to, subject, content);
 
+            }
+        }).run();
+        return true;
+    }
     public static boolean test(String to, String name,String subject,String content) {
         return doEmailSend(to,name,subject,content);
     }
@@ -42,7 +56,29 @@ public class EmailSender {
         EmailSender.EMAIL_TLS_ENABLED= tls;
 
     }
+    private static boolean doEmailSend(List<InternetAddress> inter , String subject, String content) {
+        HtmlEmail htmlEmail = new HtmlEmail();
+        htmlEmail.setHostName(HOST_NAME);
+        htmlEmail.setSmtpPort(SMTP_PORT);
+        htmlEmail.setAuthentication(EMAIL_ACCOUNT,EMAIL_PASSWORD);
+        if (Boolean.valueOf(EMAIL_SSL_ENABLED)) htmlEmail.setSSL(true);
+        if (Boolean.valueOf(EMAIL_TLS_ENABLED)) htmlEmail.setTLS(true);
+        htmlEmail.setCharset(Constants.ENCODING_UTF8);
 
+        try {
+            htmlEmail.setFrom(EMAIL_ACCOUNT);
+            htmlEmail.setTo(inter);
+
+            htmlEmail.setSubject(subject);
+            htmlEmail.setHtmlMsg(content);
+            htmlEmail.send();
+            return true;
+        } catch (EmailException e) {
+            Log.getInstance(EmailSender.class).error(e);
+            e.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.
+            return false;
+        }
+    }
     private static boolean doEmailSend(String to, String toName, String subject, String content) {
         HtmlEmail htmlEmail = new HtmlEmail();
         htmlEmail.setHostName(HOST_NAME);
@@ -55,6 +91,7 @@ public class EmailSender {
         try {
             htmlEmail.setFrom(EMAIL_ACCOUNT);
             htmlEmail.addTo(to, toName, Constants.ENCODING_UTF8);
+
             htmlEmail.setSubject(subject);
             htmlEmail.setHtmlMsg(content);
             htmlEmail.send();

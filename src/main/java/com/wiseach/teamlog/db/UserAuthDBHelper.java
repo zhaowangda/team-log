@@ -4,9 +4,12 @@ import com.mysql.jdbc.StringUtils;
 import com.wiseach.teamlog.Constants;
 import com.wiseach.teamlog.model.User;
 import com.wiseach.teamlog.model.UserInfo;
+import org.apache.commons.dbutils.ResultSetHandler;
 import org.apache.commons.dbutils.handlers.BeanHandler;
 import org.apache.commons.dbutils.handlers.BeanListHandler;
+import org.apache.commons.dbutils.handlers.ColumnListHandler;
 
+import javax.mail.internet.InternetAddress;
 import java.util.List;
 import java.util.UUID;
 
@@ -144,7 +147,10 @@ public class UserAuthDBHelper {
         // todo: implement pager.
         return PublicDBHelper.query("select u.*,ui.avatar from user u inner join userInfo ui on (u.id = ui.id)",new BeanListHandler<User>(User.class));
     }
-
+    public static List<InternetAddress> getUserEmail() {
+        // todo: implement pager.
+        return PublicDBHelper.query("select email from user",new ColumnListHandler<InternetAddress>(40));
+    }
     public static boolean usernameUsed(String username) {
         return PublicDBHelper.exist("select count(*) from user where username = ?",username);
     }

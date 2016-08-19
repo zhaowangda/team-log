@@ -39,6 +39,7 @@ public class DBMonitor {
                     "    nice integer," +
                     "    comments integer," +
                     "    createTime datetime" +
+                    "    completion integer" +
                     ")",
             "CREATE TABLE user" +
                     "(" +

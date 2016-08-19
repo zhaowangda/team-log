@@ -91,18 +91,23 @@ public class WorkLogDataServiceActionBean extends BaseActionBean {
 
     public Resolution updateContent() {
         Long tId = Long.parseLong(tagId);
+        Long Lcompletion = Long.parseLong(completion);
+        if(Lcompletion >100) {
+            return new JsonResolution<String>(getMessage("error.message.worklog.update.completion"));
+        }
         if (id==null || id == 0) {
             //new a worklog
-            id = WorkLogDBHelper.newWorklog(description, tagStr,tId,DateUtils.parseDate(start),DateUtils.parseDate(end),UserAuthProcessor.getUserId(getContext()));
+            id = WorkLogDBHelper.newWorklog(description, tagStr,tId,DateUtils.parseDate(start),DateUtils.parseDate(end),UserAuthProcessor.getUserId(getContext()),Lcompletion);
         } else {
             //update a worklog
-            id = WorkLogDBHelper.updateContent(description, tagStr,tId,id);
+            id = WorkLogDBHelper.updateContent(description, tagStr,tId,id,Lcompletion);
         }
         if (id > 0) {
             return new JsonResolution<Long>(id);
         } else {
             return new JsonResolution<String>(getMessage("error.message.worklog.update.content"));
         }
+
     }
 
     private void updateTagData() {
@@ -188,5 +193,5 @@ public class WorkLogDataServiceActionBean extends BaseActionBean {
 
     public String description;
     public String start,end;
-    public String tagStr, tagId;
+    public String tagStr, tagId,completion;
 }

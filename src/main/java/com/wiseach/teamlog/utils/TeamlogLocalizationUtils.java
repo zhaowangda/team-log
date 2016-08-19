@@ -40,10 +40,10 @@ public class TeamlogLocalizationUtils {
     public static void refreshParamBundle() {
         try {
             URL url = new File(FileUtils.getFileServicePath() + File.separator).toURI().toURL();
-            System.err.println("url:"+url);
+            //System.err.println("url:"+url);
             ClassLoader classLoader = new URLClassLoader(new URL[]{url});
             paramsResourceBundle = ResourceBundle.getBundle(PARAMS_NAME,Locale.US,classLoader);
-            System.err.println("parameter file loaded!");
+            //System.err.println("parameter file loaded!");
         } catch (MalformedURLException e) {
             e.printStackTrace();
             paramsResourceBundle = null;
